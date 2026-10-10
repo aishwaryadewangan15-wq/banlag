@@ -1,5 +1,17 @@
 # Gate status — 10 Oct 2026, ~19:30 IST (deadline 23:59 IST)
 
+**HISTORICAL ENGINEERING SNAPSHOT — NOT THE CURRENT SUBMITTED RELEASE STATUS**
+
+This document records intermediate engineering and acceptance decisions made during development on 10 October 2026. Its NO-GO findings, references to unverified candidate builds, and statement that the submission was not started describe those earlier checkpoints. They must not be read as the final status of the later submitted public release.
+
+The submitted public source commit is `063a0d1c93ff24e973b4dbacab3d6f439542a653`, with authoritative source fingerprint `c635055d573cea07146c68b9a9fb89ddd06bdf1a698ca242b63bf02d7d048f73`, documented in `docs/proof/RELEASE_IDENTITY.md`.
+
+The release introduced a stricter public-output contract that separates direct observations and mechanical comparisons from unverified language-parser interpretations. The historical NO-GO results remain relevant evidence of the parser's limitations. They are not erased by successful regression testing or by the public-output quarantine.
+
+The project author reports that the hackathon submission was completed. This file is not independent confirmation of organizer acceptance, video accessibility or judging outcome.
+
+For the final public-output boundary, refer to `docs/PUBLIC_CONTRACT.md`. For the judge-facing summary and honest limitations, refer to `README.md`.
+
 > **Update, ~22:00 IST — final workbench.** Codex's RC-3 acceptance audit was **NO-GO**. The causes were a parenthetical denial or extra active that stayed "exact", and a status question that names a fourth drug.
 >
 > We did not repair the parser again. Every public output now passes through one contract, described in [PUBLIC_CONTRACT.md](PUBLIC_CONTRACT.md): parser readings appear only under `experimental`, and publication is never decided by software. The parser itself is unchanged and still has those defects, as experimental readings.

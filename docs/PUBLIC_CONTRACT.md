@@ -4,9 +4,15 @@ Why: Codex's independent audits showed, four times in a row, that the English pa
 
 ## One enforcement point
 
-`banlag/public.py` → `public()` runs on **every JSON response** in `banlag/server.py` (`Handler._json`). That covers `GET /api/overview`, `/api/case/{id}`, `/api/live`, `/api/registry` and `/api/status`, and `POST /api/evaluate` and `/api/match`.
+`banlag/server.py` calls `banlag.public.public()` from `Handler._json` when constructing JSON responses. That invocation is shared, but the handling is route-dependent.
 
-**Version 2, an allowlist (22:58 IST, after Codex's NO-GO).** `public()` keeps only the fields listed in `ALLOWED`/`OPAQUE` in `banlag/public.py`: observed capture fields, typed registry facts and mechanical observations. Every other field fails closed into `experimental`, including any field a future change adds. Codex showed that the version-1 denylist below let `explicit_exact_entity`, `classification`, `registry_match`, `tier_explanation` and `status_answer_label` escape; the allowlist closes that class. The version-1 description follows for history: it moved every machine reading of prose under an `experimental` key, wherever it occurs. The key is marked `reading_status: EXPERIMENTAL_NOT_VERIFIED`. The fields it moves:
+For assessment and evidence routes such as `GET /api/overview`, `GET /api/case/{id}`, `GET /api/live` and `POST /api/evaluate`, `public()` applies the recursive field allowlist. Keys explicitly designated as observed, registered or mechanical remain available, selected opaque structures are passed through as defined in code, and other interpretation fields are moved into `experimental`.
+
+The code explicitly treats `GET /api/registry`, `POST /api/match` and `GET /api/status` as pass-through routes. These provide typed registry information, typed ingredient-list matching and server status, respectively; they do not undergo the same recursive assessment-output filtering.
+
+Therefore, the contract is not accurately described as identical recursive allowlisting of every JSON endpoint. Its protection applies to the specific routes, fields and opaque structures implemented in `banlag/public.py`.
+
+**Version 2, an allowlist (22:58 IST, after Codex's NO-GO).** For assessment and evidence responses, `public()` applies `ALLOWED` and `OPAQUE` as defined in `banlag/public.py`. Listed public fields and specifically designated opaque structures remain available. Other fields are moved into `experimental`, with `reading_status: EXPERIMENTAL_NOT_VERIFIED`. This is a boundary on public research interpretation, not proof that the underlying English parser is accurate. The typed pass-through routes described above are a separate part of the contract. Codex showed that the version-1 denylist below let `explicit_exact_entity`, `classification`, `registry_match`, `tier_explanation` and `status_answer_label` escape; the allowlist closes that class. The version-1 description follows for history: it moved every machine reading of prose under an `experimental` key, wherever it occurs. The key is marked `reading_status: EXPERIMENTAL_NOT_VERIFIED`. The fields it moves:
 
 - labels: `prereg_label`, `engine_label`;
 - tiers: `tier`, `evidence_tier`, `verified_evidence_tier`, `tier_status`, `tier2_hits`;
