@@ -1,0 +1,29 @@
+P1-1 UNKNOWN EXTRA INGREDIENT (target F08, 3 drugs)
+  The combination of dicyclomine, paracetamol, clidinium bromide and omepraz -> label=B tier=0
+  Omeprazole + dicyclomine + paracetamol + clidinium bromide is commonly pre -> label=B tier=0
+  Dicyclomine, omeprazole, paracetamol and clidinium bromide combination is  -> label=B tier=0
+  Dicyclomine/Paracetamol/Clidinium Bromide/Rifaximin tablets are commonly p -> label=B tier=0
+  A combination of dicyclomine, paracetamol, and clidinium bromide is common -> label=E tier=1
+  restriction text names F08 + omeprazole                                    -> False
+  reference titled F08 + omeprazole: relation                                -> UNRECOGNISED_COMPONENT
+P1-2 CORPUS INTEGRITY
+  tampered corpus byte                                                       -> G1=INTEGRITY_FAILED positives=0 notice_findings=0 gates=['WITHHOLD']
+  missing manifest                                                           -> G1=INTEGRITY_FAILED positives=0 notice_findings=0 gates=['WITHHOLD']
+P1-3 ARCHIVE PROVENANCE (hash-consistent run, key unavailable)
+  with local key                                                             -> origin=TRUSTED_LOCAL_SERPAPI_CAPTURE tier=2 verified_tier=2 status=PROVENANCE_VERIFIED gate=ELIGIBLE_FOR_REVIEW
+  without key (public replay)                                                -> origin=ARCHIVED_SERPAPI_CAPTURE tier=2 verified_tier=0 status=ARCHIVE_REPLAY_ORIGIN_UNAUTHENTICATED gate=WITHHOLD
+  browser-archive F08 publication gate                                       -> ELIGIBLE_FOR_REVIEW conditions=['HUMAN_REVIEW_REQUIRED', 'ORIGIN_NOT_CRYPTOGRAPHICALLY_AUTHENTICATED: reviewer must accept the preregistered archive chain of custody (locked preregistration, lock records, archive manifest)']
+P1-4 RESTRICTION NEGATION / REVOCATION (answer text, target F08)
+  Dicyclomine + paracetamol + clidinium bromide is not currently banned in I -> label=F tier=0
+  Dicyclomine + paracetamol + clidinium bromide is not legally prohibited in -> label=F tier=0
+  The ban on dicyclomine + paracetamol + clidinium bromide in India was revo -> label=F tier=0
+  Dicyclomine + paracetamol + clidinium bromide is no longer prohibited in I -> label=F tier=0
+  Dicyclomine + paracetamol + clidinium bromide is prohibited in India.  [co -> label=D tier=0
+  identifies exact: "prohibition ... was revoked by the Central Government"  -> False
+P1-5 TIER-2 ORGANIC RESTRICTIONS (strong omission answer, same response)
+  The US FDA banned the combination of Dicyclomine + Paracetamol + Clidinium -> label=E tier=1
+  The prohibition on Dicyclomine + Paracetamol + Clidinium Bromide was revok -> label=E tier=1
+  Dicyclomine + Paracetamol + Clidinium Bromide was banned in India in 2016. -> label=E tier=1
+  The Central Government has proposed to prohibit Dicyclomine + Paracetamol  -> label=E tier=1
+  Dicyclomine + Paracetamol + Clidinium Bromide is banned.                   -> label=E tier=1
+  The Central Government has prohibited the fixed dose combination Dicyclomi -> label=E tier=2

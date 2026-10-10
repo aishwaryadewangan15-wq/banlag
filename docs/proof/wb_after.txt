@@ -1,0 +1,27 @@
+BANLAG final workbench freeze, 10 Oct 2026 about 21:55 IST.
+
+Code identity: 36131892fe3ff0036230e06f4e020bf7b9370dd25078ae53f8a6c372a96d488a (39 source files).
+Method: same as rc3_after.txt.
+Previous identity: RC-3, 98cf338093baa9af51ffd3ca43daeb95bf1fff4d4c8f6242e0b02e4e5aba5cb2.
+
+Source changes since RC-3:
+  banlag/public.py (new)
+  banlag/server.py
+  web/app.js
+  web/index.html
+  tests/test_public_contract.py (new, 13 tests)
+  tests/test_codex_p1b.py, test_http.py, test_http_hardening.py, test_rc2_repairs.py, test_semantic_core.py
+    (read HTTP responses through public.legacy_view; 2 executed-JS expectations changed from c-restrict to c-qualified,
+     marked CONTRACT CHANGE in the source)
+Not changed: semantics.py, claims.py, citations.py, engine.py, corpus.py, collector.py, capture_store.py, legal.py,
+  the registry and all evidence.
+
+Results:
+  APP with the local key and sealed store:    Ran 224 tests ... OK (skipped=0)
+  Scratch snapshot, no store, empty key dir:  Ran 224 tests ... OK (skipped=7)
+  Locked archive EVIDENCE_MANIFEST:           98/98 SHA-256 and size match
+  Replay corpus:                              10e859bd...4212 VERIFIED; G1_PASS 7/10
+  Genuine run run-20261010T024515Z-9415e2:    origin TRUSTED_LOCAL_SERPAPI_CAPTURE; legacy labels ['F','A'] (experimental)
+  Secret scan (APP and staging):              168 files, 0 hits
+  Rendered browser (built-in pane, 127.0.0.1:8765): 5 views, 0 console errors, 0 .c-restrict elements;
+    Q02 observation row [2] shows "F09 S.O. 3071(E): +chlordiazepoxide (candidate)".

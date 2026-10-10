@@ -1,0 +1,19 @@
+{
+ "schema": "banlag.plan.v1",
+ "purpose": "Second SerpApi probe: preregistered query Q04 (F10, S.O. 3080(E)), outside the serratiopeptidase family. Exact preregistered wording; same locale as the first probe.",
+ "case": "F10",
+ "ingredients": ["gliclazide", "chromium picolinate"],
+ "max_calls": 2,
+ "notes": [
+  "C2 runs only if C1 returns ai_overview.page_token without inline text_blocks (page_token expires within 1 minute, so it runs immediately).",
+  "Any HTTP error, provider error or non-Success provider status stops the run; there are no retries.",
+  "F10 is a diabetes medicine: every display carries the do-not-stop banner; the legal audit prefers it not be the headline case.",
+  "Sync the Windows clock before running: the first probe showed this machine about 42 s behind SerpApi."
+ ],
+ "calls": [
+  {"call_id": "C1", "role": "uses_search", "engine": "google",
+   "params": {"q": "gliclazide chromium picolinate uses", "gl": "in", "hl": "en", "google_domain": "google.co.in",
+              "location": "Mumbai, Maharashtra, India", "device": "desktop", "no_cache": "true"}},
+  {"call_id": "C2", "role": "uses_ai_overview", "engine": "google_ai_overview", "page_token_from": "C1", "params": {}}
+ ]
+}

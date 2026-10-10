@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BANLAG — Disclosure Audit</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" aria-label="Cases">
+    <div class="brand"><div class="brandmark">B<span>↗</span></div><div><div class="brandname">BANLAG</div><small>REGULATORY DISCLOSURE AUDIT</small></div></div>
+    <div class="sectionline">SECTION 26A NOTICES <span id="registryCount">10</span></div>
+    <div id="caseList" class="registry-list"></div>
+    <div class="sectionline">LOOK-ALIKE CONTROLS <span>4</span></div>
+    <div id="controlList" class="control-list"></div>
+    <div class="side-bottom"><div class="smallcap">EVIDENCE POLICY</div><p>Exact composition. Claim-level reading. Dated, hash-bound observations. No accusations, no medical advice.</p><span class="secured" id="netStatus">◌ Local server · 0 outbound requests</span></div>
+  </aside>
+  <main>
+    <header class="topbar">
+      <nav class="tabs" role="tablist" aria-label="Views">
+        <button role="tab" class="tab active" data-view="case" aria-selected="true">Case file</button>
+        <button role="tab" class="tab" data-view="g1" aria-selected="false">G1 experiment</button>
+        <button role="tab" class="tab" data-view="integrity" aria-selected="false">Integrity &amp; benchmark</button>
+        <button role="tab" class="tab" data-view="verify" aria-selected="false">Verify an import</button>
+        <button role="tab" class="tab" data-view="live" aria-selected="false">SerpApi capture</button>
+      </nav>
+      <div class="topright"><span class="dot"></span><span id="provBadge">Loading evidence…</span></div>
+    </header>
+
+    <div class="content">
+      <div class="notice" role="note"><span class="noticeicon">◉</span><div><strong>Research instrument, not a medical or legal verdict.</strong>
+        <span> Each notice prohibits the manufacture, sale or distribution of one exact fixed-dose combination for human use; it does not make it an offence for a patient to have or use a medicine. Do not stop or change any medicine because of this page — speak to your doctor or pharmacist.</span></div></div>
+
+      <!-- CASE FILE -->
+      <section id="view-case" class="view">
+        <div class="case-head">
+          <div>
+            <div class="eyebrow"><span class="eyeline"></span><span id="caseEyebrow">—</span></div>
+            <h1 id="caseTitle">—</h1>
+            <p class="intro" id="caseSub">—</p>
+          </div>
+          <div class="verdict" id="caseVerdict"><div class="smallcap">PREREGISTERED LABELS</div><div class="pair" id="caseLabels"></div><div class="verdict-text" id="caseVerdictText"></div></div>
+        </div>
+        <div class="banner warn" id="safetyBanner" hidden></div>
+
+        <div class="threecol">
+          <article class="panel">
+            <div class="paneltop"><span class="index">01</span><span>OFFICIAL NOTIFICATION</span><span class="panelicon">§</span></div>
+            <div class="panelinner">
+              <div class="pill ok">PRIMARY SOURCE · GAZETTE</div>
+              <h3 id="noticeName">—</h3>
+              <div class="muted" id="noticeMeta">—</div>
+              <div class="formula" id="formulaText">—</div>
+              <div class="smallcap">OPERATIVE CLAUSE (VERBATIM)</div>
+              <blockquote class="quote" id="operative"></blockquote>
+              <div class="smallcap">GOVERNMENT'S STATED BASIS (QUOTED, NOT A HEALTH CLAIM)</div>
+              <blockquote class="quote subtle" id="basis"></blockquote>
+              <div class="status-grid" id="legalStatus"></div>
+              <a id="gazetteLink" href="https://egazette.gov.in/WriteReadData/2026/273649.pdf" target="_blank" rel="noopener noreferrer">Inspect the official Gazette ↗</a>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="paneltop"><span class="index">02</span><span>AI OVERVIEW · “USES” QUERY</span>
+              <span class="seg" role="group" aria-label="Pass"><button class="segbtn active" data-pass="A">Pass A</button><button class="segbtn" data-pass="B">Pass B</button></span></div>
+            <div class="panelinner">
+              <div class="row-between"><div class="pill" id="usesPill">—</div><span class="muted mono" id="usesTime"></span></div>
+              <div class="querybox"><span class="smallcap">QUERY TYPED</span><span id="usesQuery" class="mono"></span></div>
+              <div class="subject" id="usesSubject"></div>
+              <div class="answer" id="usesAnswer"></div>
+              <div class="legend"><span class="muted">Highlights are EXPERIMENTAL parser readings, not verified facts:</span><span class="hl c-strong">strong current use</span><span class="hl c-weak">present-tense use</span><span class="hl c-qualified">restriction wording about this FDC (any reading)</span><span class="hl c-partial">class-level / hedged restriction</span><span class="hl c-other">component / other entity</span><span class="hl c-hist">historical</span></div>
+              <div class="bottommeta" id="usesMeta"></div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="paneltop"><span class="index">03</span><span>SAME SURFACE · ASKED ABOUT STATUS</span><span class="panelicon">⇄</span></div>
+            <div class="panelinner">
+              <div class="row-between"><div class="pill" id="statusPill">—</div><span class="muted mono" id="statusTime"></span></div>
+              <div class="querybox"><span class="smallcap">SEPARATE PREREGISTERED PROMPT</span><span id="statusQuery" class="mono"></span></div>
+              <div class="answer" id="statusAnswer"></div>
+              <div class="notice-check" id="statusNotice"></div>
+              <p class="fineprint" id="contrastText"></p>
+            </div>
+          </article>
+        </div>
+
+        <div class="lowergrid">
+          <section class="panel">
+            <div class="paneltop"><span>LOOK-ALIKE CONTROL · SAME WORDING, DIFFERENT COMPOSITION</span><span class="panelicon">≠</span></div>
+            <div class="panelinner" id="controlPanel"></div>
+          </section>
+          <section class="panel">
+            <div class="paneltop"><span>DECISION TRACE &amp; TRUST</span><span class="panelicon">⌁</span></div>
+            <div class="panelinner" id="tracePanel"></div>
+          </section>
+        </div>
+        <section class="panel spaced">
+          <div class="paneltop"><span class="index">04</span><span>LIVE SERPAPI CAPTURE · SAME PREREGISTERED QUERY · SEALED</span><span class="panelicon">⟳</span></div>
+          <div class="panelinner" id="caseLive"></div>
+        </section>
+      </section>
+
+      <!-- G1 -->
+      <section id="view-g1" class="view" hidden>
+        <div class="eyebrow"><span class="eyeline"></span>PREREGISTERED PUBLIC-GOOGLE TEST · LOCKED BEFORE THE FIRST QUERY</div>
+        <h1>Does the AI Overview describe a prohibited combination as current treatment, without the India status?</h1>
+        <div class="statrow" id="g1Stats"></div>
+        <section class="panel"><div class="paneltop"><span>TEN EXACT COMPOSITIONS · TWO PASSES ≥30 MIN APART</span></div><div class="tablewrap"><table class="grid" id="g1Table"></table></div></section>
+        <div class="lowergrid">
+          <section class="panel"><div class="paneltop"><span>SENSITIVITY (REPORTED, NEVER USED TO CHANGE THE VERDICT)</span></div><div class="panelinner"><table class="grid" id="sensTable"></table></div></section>
+          <section class="panel"><div class="paneltop"><span>INTEGRITY CHAIN</span></div><div class="panelinner" id="integrityChain"></div></section>
+        </div>
+      </section>
+
+      <!-- INTEGRITY & BENCHMARK -->
+      <section id="view-integrity" class="view" hidden>
+        <div class="eyebrow"><span class="eyeline"></span>WHAT A KEYWORD CHECKER CANNOT DO</div>
+        <h1>Notice-number integrity and a measured baseline comparison</h1>
+        <section class="panel"><div class="paneltop"><span>NOTICE NUMBERS QUOTED BY AI STATUS ANSWERS vs THE GAZETTE</span></div><div class="tablewrap"><table class="grid" id="noticeTable"></table></div></section>
+        <section class="panel spaced"><div class="paneltop"><span>LABEL AGREEMENT WITH THE LOCKED CODER (DEVELOPMENT SET)</span></div><div class="tablewrap"><table class="grid" id="benchTable"></table></div><p class="fineprint pad" id="benchNote"></p></section>
+        <section class="panel spaced"><div class="paneltop"><span>ADVERSARIAL SENTENCES · WHERE KEYWORDS FAIL (AUTHORED, NOT OBSERVATIONS)</span></div><div class="tablewrap"><table class="grid" id="advTable"></table></div><p class="fineprint pad" id="advNote"></p></section>
+        <section class="panel spaced"><div class="paneltop"><span>WHERE THE ENGINE DISAGREES (CONSERVATIVE ABSTENTION)</span></div><div class="panelinner" id="disagree"></div></section>
+      </section>
+
+      <!-- VERIFY -->
+      <section id="view-verify" class="view" hidden>
+        <div class="eyebrow"><span class="eyeline"></span>FAIL-CLOSED BY DESIGN</div>
+        <h1>Imported files are never trusted — whatever they claim to be</h1>
+        <p class="intro">Load one of the hostile samples from the independent security audit, or import your own capture JSON. Every import is <b>USER_SUPPLIED_UNVERIFIED</b>; only the approval-gated local collector can mint a sealed SerpApi capture.</p>
+        <div class="actions wrap" id="sampleButtons"><label class="button primary" for="fileInput">＋ Import capture JSON</label><input id="fileInput" type="file" accept="application/json,.json" hidden></div>
+        <div class="lowergrid">
+          <section class="panel"><div class="paneltop"><span>RESULT</span></div><div class="panelinner" id="verifyResult"><p class="muted">Choose a sample or import a file.</p></div></section>
+          <section class="panel"><div class="paneltop"><span>EXACT-COMPOSITION MATCHER</span><span class="panelicon">≠</span></div>
+            <div class="panelinner matcher"><p>Subsets, supersets, look-alikes and contested probiotic names never inherit a prohibition.</p>
+              <label for="ingredients">COMPLETE INGREDIENT SET, COMMA SEPARATED</label><input id="ingredients" value="dicyclomine, paracetamol" spellcheck="false">
+              <button class="button secondary" id="checkMatch">Check exact match →</button><div id="matchResult" class="match-result">Ready</div></div></section>
+        </div>
+      </section>
+
+      <!-- LIVE -->
+      <section id="view-live" class="view" hidden>
+        <div class="eyebrow"><span class="eyeline"></span>SERPAPI · SEALED LOCAL CAPTURE</div>
+        <h1>Live, sealed captures of Google India AI Overviews and organic results through SerpApi</h1>
+        <div id="liveBody"></div>
+      </section>
+
+      <footer class="foot"><span id="footCorpus">—</span><span>OUTPUT REQUIRES HUMAN AND LEGAL REVIEW BEFORE ANY PUBLIC USE</span></footer>
+    </div>
+  </main>
+</div>
+<script src="/samples.js" defer></script>
+<script src="/app.js" defer></script>
+</body></html>

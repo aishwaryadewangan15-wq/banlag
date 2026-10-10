@@ -1,0 +1,52 @@
+{
+ "record": {
+  "capture_id": "run-20261010T024515Z-9415e2-C3",
+  "run_id": "run-20261010T024515Z-9415e2",
+  "call_id": "C3",
+  "call_index": 2,
+  "role": "status_search",
+  "parent_call_id": null,
+  "request": {
+   "endpoint": "https://serpapi.com/search.json",
+   "engine": "google",
+   "params": {
+    "q": "is dicyclomine paracetamol clidinium bromide prohibited for manufacture sale or distribution in india in 2026",
+    "gl": "in",
+    "hl": "en",
+    "google_domain": "google.co.in",
+    "location": "Mumbai, Maharashtra, India",
+    "device": "desktop",
+    "no_cache": "true"
+   }
+  },
+  "http_status": 200,
+  "received_at": "2026-10-10T02:45:36+00:00",
+  "elapsed_ms": 2630,
+  "truncated": false,
+  "key_redacted_from_raw": false,
+  "provider": {
+   "id": "6ac9a6f93c400695694c9a71",
+   "created_at": "2026-10-10 02:46:17 UTC",
+   "processed_at": "2026-10-10 02:46:17 UTC",
+   "status": "Success",
+   "json_endpoint": "https://serpapi.com/searches/fkCE4XVeBvKwhhZqS1L42enLt361tK87BKTA7F0d3wA/6ac9a6f93c400695694c9a71.json"
+  },
+  "provider_error": null,
+  "plan_sha256": "9bbc20e18aff534a9e96c25b3b3abd3165e353abd975d0b74328b87483cceb61",
+  "plan": {
+   "purpose": "First SerpApi feasibility probe for the headline case F08 (S.O. 3078(E)). Reuses the exact preregistered query strings Q02 and S02; no new wording.",
+   "case": "F08",
+   "ingredients": [
+    "dicyclomine",
+    "paracetamol",
+    "clidinium bromide"
+   ]
+  },
+  "collector_version": "0.2.0",
+  "schema": "banlag.capture.v1",
+  "raw_sha256": "27b380e987ee4c2fa124dc47142aaf3db51f87557279cd756841cc9eab331aba",
+  "raw_file": "raw/27b380e987ee4c2fa124dc47142aaf3db51f87557279cd756841cc9eab331aba.json",
+  "raw_bytes": 89024
+ },
+ "hmac_sha256": "6666ba7ddcac0f04249357bfc4d97d25d94ea9d53ca1826aad1e7140d0c7e1cd"
+}

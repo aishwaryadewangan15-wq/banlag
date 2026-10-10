@@ -1,0 +1,17 @@
+{
+ "source":{"gazette":"https://egazette.gov.in/WriteReadData/2026/273649.pdf","pib":"https://www.pib.gov.in/PressReleasePage.aspx?PRID=2275595","notice_date":"2026-06-11","review_date":"2026-10-10","legal_scope":"Prohibition of manufacture, sale or distribution of named exact FDC for human use. No finding about possession, prescribing, or an individual product. Court search non-exhaustive."},
+ "entries":[
+ {"id":"F01","notice":"S.O. 3068(E)","ingredients":["acetyl salicylic acid","ethoheptazine"]},
+ {"id":"F08","notice":"S.O. 3078(E)","ingredients":["dicyclomine","paracetamol","clidinium bromide"]},
+ {"id":"F09","notice":"S.O. 3071(E)","ingredients":["dicyclomine","paracetamol","clidinium bromide","chlordiazepoxide"]},
+ {"id":"F10","notice":"S.O. 3080(E)","ingredients":["gliclazide","chromium picolinate"]},
+ {"id":"F11","notice":"S.O. 3079(E)","ingredients":["paracetamol","lignocaine"]},
+ {"id":"F12","notice":"S.O. 3070(E)","ingredients":["amoxicillin","serratiopeptidase","lactobacillus sporogenes"]},
+ {"id":"F13","notice":"S.O. 3081(E)","ingredients":["amoxicillin","cloxacillin","lactic acid bacillus","serratiopeptidase"]},
+ {"id":"F14","notice":"S.O. 3072(E)","ingredients":["amoxicillin","serratiopeptidase"]},
+ {"id":"F15","notice":"S.O. 3082(E)","ingredients":["cefadroxyl","probenecid"]},
+ {"id":"F16","notice":"S.O. 3083(E)","ingredients":["cefuroxime","serratiopeptidase"]}
+ ],
+ "aliases":{"aspirin":"acetyl salicylic acid","acetylsalicylic acid":"acetyl salicylic acid","dicycloverine":"dicyclomine","acetaminophen":"paracetamol","clidinium":"clidinium bromide","lidocaine":"lignocaine","amoxycillin":"amoxicillin","serrapeptase":"serratiopeptidase","cefadroxil":"cefadroxyl"},
+ "known_others":["clavulanic acid","clavulanate","aceclofenac","diclofenac","activated dimethicone","dicloxacillin","metformin","ibuprofen","azithromycin","chromium polynicotinate"]
+}

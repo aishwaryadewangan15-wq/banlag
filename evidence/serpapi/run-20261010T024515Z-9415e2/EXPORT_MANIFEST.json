@@ -1,0 +1,13 @@
+{
+ "schema": "banlag.capture_export.v1",
+ "run_id": "run-20261010T024515Z-9415e2",
+ "files_sha256": {
+  "run-20261010T024515Z-9415e2-C1.json": "6253e442b9384b626f8be4b77d892aa79c8d7dff654207156a461653f1c5fc00",
+  "raw/5cebdd192a102e456158be78549a3ff0506de8a8c5da43787b6717502c4375c5.json": "5cebdd192a102e456158be78549a3ff0506de8a8c5da43787b6717502c4375c5",
+  "run-20261010T024515Z-9415e2-C2.json": "56107e954cf17af02184f9d17394dd00837d14041de983f90ed0abf864921323",
+  "raw/34c1c76348b110ab16cc85c41b1af8dcbba25486307db90537f45622f95dcc24.json": "34c1c76348b110ab16cc85c41b1af8dcbba25486307db90537f45622f95dcc24",
+  "run-20261010T024515Z-9415e2-C3.json": "3ed61de5249d2b6d84d262cc7ed8056a02fe523013dbee86a849f640cd98786d",
+  "raw/27b380e987ee4c2fa124dc47142aaf3db51f87557279cd756841cc9eab331aba.json": "27b380e987ee4c2fa124dc47142aaf3db51f87557279cd756841cc9eab331aba"
+ },
+ "verification": "Seal (HMAC) needs the collector machine key, which is never exported; elsewhere these files verify as ARCHIVED_SERPAPI_CAPTURE."
+}

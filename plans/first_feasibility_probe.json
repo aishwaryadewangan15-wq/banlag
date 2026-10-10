@@ -1,0 +1,21 @@
+{
+ "schema": "banlag.plan.v1",
+ "purpose": "First SerpApi feasibility probe for the headline case F08 (S.O. 3078(E)). Reuses the exact preregistered query strings Q02 and S02; no new wording.",
+ "case": "F08",
+ "ingredients": ["dicyclomine", "paracetamol", "clidinium bromide"],
+ "max_calls": 3,
+ "notes": [
+  "C2 runs only if C1 returns ai_overview.page_token without inline text_blocks (page_token expires within 1 minute, so it runs immediately).",
+  "If C1 or C2 returns an HTTP/provider error the run stops; there are no retries.",
+  "Location differs from the browser archive (Jabalpur, MP): a SerpApi capture is a separate observation, not a replication."
+ ],
+ "calls": [
+  {"call_id": "C1", "role": "uses_search", "engine": "google",
+   "params": {"q": "dicyclomine paracetamol clidinium bromide uses", "gl": "in", "hl": "en", "google_domain": "google.co.in",
+              "location": "Mumbai, Maharashtra, India", "device": "desktop", "no_cache": "true"}},
+  {"call_id": "C2", "role": "uses_ai_overview", "engine": "google_ai_overview", "page_token_from": "C1", "params": {}},
+  {"call_id": "C3", "role": "status_search", "engine": "google",
+   "params": {"q": "is dicyclomine paracetamol clidinium bromide prohibited for manufacture sale or distribution in india in 2026", "gl": "in", "hl": "en",
+              "google_domain": "google.co.in", "location": "Mumbai, Maharashtra, India", "device": "desktop", "no_cache": "true"}}
+ ]
+}

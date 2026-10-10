@@ -1,0 +1,12 @@
+--- C1 forged SERPAPI_LIVE_CAPTURE, captured_at=tomorrow, no search_metadata
+  evidence_tier: 2 | source_kind: SERPAPI_LIVE_CAPTURE | captured_at: tomorrow
+  cited: []
+--- C2 cross-surface join (AIO has zero citations; AI Mode cites the page)
+  evidence_tier: 3 | source_kind: BROWSER_RESEARCH | captured_at: 2026-10-10
+  cited: [{"url": "https://gov.example.invalid/notice", "has_documented_capture": true, "exact_restriction_explicitly_present": true}]
+--- C3 self-asserted source_text on fictional URL
+  evidence_tier: 3 | source_kind: BROWSER_RESEARCH | captured_at: 2026-10-10
+  cited: [{"url": "https://fiction.invalid/p", "has_documented_capture": true, "exact_restriction_explicitly_present": true}]
+--- H4 adjacent unrelated ban counted as exact restriction
+  evidence_tier: 3 | source_kind: BROWSER_RESEARCH | captured_at: 2026-10-10
+  cited: [{"url": "https://fiction.invalid/p", "has_documented_capture": true, "exact_restriction_explicitly_present": true}]
