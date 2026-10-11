@@ -19,7 +19,7 @@ import re
 from . import provenance as P
 from .citations import coherence
 from .claims import CURRENT_YEAR, analyze_surface, restriction_statements, status_question_hint
-from .legal import match_formula, registry, entry_by_id, find_mentions
+from .legal import match_formula, registry, find_mentions
 from .semantics import EXACT as COMPOSITION_EXACT, restriction_assessment
 
 ENGINE_VERSION = '0.2.0'
@@ -64,7 +64,7 @@ def _blocks_from_text_blocks(text_blocks, unknown):
                     title = (item.get('title') or '').strip().rstrip(':') or parent_label
                     own = item.get('reference_indexes') if isinstance(item.get('reference_indexes'), list) else []
                     # A list-level reference_indexes cites the whole list, so each item inherits it. Merge by (type, value):
-                    # a malformed False / 0.0 must not collapse into index 0 (claims.py validates and refuses it later).
+                    # a malformed False / 0.0 must not collapse into index 0 (banlag.claims validates and refuses it later).
                     merged = list(own) + [x for x in list_refs if not any(type(x) is type(y) and x == y for y in own)]
                     refs = (sorted(merged) if all(type(x) is int for x in merged) else merged) if merged else None
                     add('list_item', title, item.get('snippet'), refs)
