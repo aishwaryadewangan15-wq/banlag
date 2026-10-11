@@ -3,7 +3,7 @@
     python scripts/build_static_demo.py [--out _site]
 
 It starts the normal local server in-process on a free port, and saves every GET response the UI uses as JSON. It also
-pre-renders POST responses for the built-in hostile samples and for exact-match checks of the ten notified sets and
+pre-renders POST responses for the built-in hostile samples and for exact-match checks of all sixteen notified sets and
 close variants. Then it copies the web UI next to them with relative paths. The web UI switches to replay mode when
 static-config.js sets window.BANLAG_STATIC = true. Nothing is computed in the browser, and no request leaves the page.
 Requires Node.js to read the sample payloads from web/samples.js (exactly as the browser serialises them).

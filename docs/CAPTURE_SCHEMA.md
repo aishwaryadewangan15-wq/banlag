@@ -11,6 +11,12 @@ Created only by `python -m banlag.collector <plan> --approve <plan sha256>` afte
 
 `captures/` is git-ignored. To publish a run deliberately: `python -m banlag.capture_store export <run_id>` copies its records and raw responses (never the key) to `evidence/serpapi/<run_id>/` with an `EXPORT_MANIFEST.json`; only runs that verify locally can be exported, and exports are immutable. `engine.evaluate_run(run_id)` assembles a run: the `google` response (organic results + `ai_overview` or its `page_token`), the `google_ai_overview` follow-up, and an optional separately worded status search.
 
+Call roles a plan may use: `uses_search`, `uses_ai_overview` (page_token follow-up of the uses search), `uses_ai_mode`, `status_search` and `status_ai_overview` (page_token follow-up of the status search). A status follow-up is merged only when its `page_token` matches the status search's, and that link never upgrades the uses-search binding. `python -m banlag.batch` writes budgeted plans across days and cities. Each plan carries a `schedule` (day, date, location), so no approval hash can be reused for another day.
+
+## 1b. Cited-page snapshots (`evidence/cited_pages/<run>/CITED_PAGES.json`)
+
+`python -m banlag.citefetch <run_id>` fetches each URL the run's AI surfaces cite. It refuses non-public hosts, including on redirects, and caps responses at 5 MB. It records the final URL, HTTP status, content type, byte length, the SHA-256 of the exact bytes, `fetched_at` and `lag_after_capture_hours`, plus text checks: registry names present, notice numbers present, and sentence-level exact-restriction statements per registry entry, quoted at most 300 characters. The bytes and extracted text stay in git-ignored `captures/cited_pages/<run>/`. `--evaluate` passes only snapshots whose local bytes still match the published hash to the engine as `LOCAL_SNAPSHOT_VERIFIED` pages. A snapshot shows what a URL returned at `fetched_at`, not what Google saw.
+
 ## 2. Imported capture (always `USER_SUPPLIED_UNVERIFIED`)
 
 ```json

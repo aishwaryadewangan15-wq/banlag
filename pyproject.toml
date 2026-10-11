@@ -31,6 +31,9 @@ Issues = "https://github.com/aishwaryadewangan15-wq/banlag/issues"
 [project.scripts]
 banlag = "banlag.server:main"
 banlag-collector = "banlag.collector:main"
+banlag-batch = "banlag.batch:main"
+banlag-citefetch = "banlag.citefetch:main"
+banlag-stats = "banlag.stats:main"
 
 [tool.setuptools]
 packages = ["banlag", "banlag.baselines", "banlag.claims", "banlag.semantics"]

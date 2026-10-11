@@ -30,7 +30,7 @@ async function staticPost(path, body) {
     : 'evaluate:' + JSON.stringify(body);
   const file = STATIC_INDEX[key];
   if (!file) throw Error(path === '/api/match'
-    ? 'This read-only demo has pre-computed answers for the ten notified sets and close variants. Run BANLAG locally (python -m banlag) to check any ingredient list.'
+    ? 'This read-only demo has pre-computed answers for all sixteen notified sets and close variants. Run BANLAG locally (python -m banlag) to check any ingredient list.'
     : 'Imports need the local app: this read-only demo can only replay the built-in samples. Run python -m banlag.');
   const d = await (await fetch('api/' + file)).json();
   if (d && d.__status && d.__status !== 200) throw Error(d.error || 'Request failed');
@@ -45,7 +45,7 @@ async function post(path, body) {
 function lab(x, big) { const s = el('span', 'lab ' + (x || 'A') + (big ? ' big' : ''), x === 'NOT_FLAGGED' ? 'NOT FLAGGED' : (x || '–')); s.title = labelName(x); return s; }
 function labelName(x) {
   return { A: 'A · no AI answer', B: 'B · not the exact FDC', C: 'C · historical / general only', D: 'D · India restriction mentioned',
-    E: 'E · present current use without India status', F: 'F · uncertain (scope, hedge, truncation)', NOT_FLAGGED: 'Not one of the ten notified sets' }[x] || x;
+    E: 'E · present current use without India status', F: 'F · uncertain (scope, hedge, truncation)', NOT_FLAGGED: 'Not one of the sixteen notified sets' }[x] || x;
 }
 
 const QUALIFIERS = ['negated', 'denied', 'reported', 'conditional', 'proposed', 'historical', 'revoked'];

@@ -1,10 +1,12 @@
-"""Legal registry and strict exact-set matcher for the ten Section 26A notices (S.O. 3068(E)-3083(E)).
+"""Legal registry and strict exact-set matcher for the sixteen Section 26A notices (S.O. 3068(E)-3083(E)).
 
 Design rules (from the independent legal audit):
 - A notice names one exact fixed-dose combination; only the complete ingredient set matches.
 - Subsets, supersets and look-alikes never inherit a prohibition.
 - Spelling/salt variants are reported (SPELLING_VARIANT); probiotic name swaps are contested
   and produce an abstention, never a match.
+- A notice that names a component only generically (F07: 'Herbal') can never be matched exactly; a list that
+  equals its specified part plus that generic word is reported as a candidate for review, never as a match.
 """
 import copy
 import json
@@ -53,9 +55,23 @@ def lexicon():
     for alias, spec in db['aliases'].items():
         lex[norm(alias)] = (spec['canonical'] or norm(alias), spec['class'])
     for entry in db['entries']:
+        vague = set(entry.get('underspecified_terms', ()))
         for ing in entry['ingredients']:
-            lex[norm(ing)] = (ing, 'LITERAL')
+            if ing not in vague:
+                lex[norm(ing)] = (ing, 'LITERAL')
     return lex
+
+
+def _underspecified_candidate(names, unknown):
+    """F07-style notices: the recognised names equal an entry's specified part and every unknown word is its generic term."""
+    words = {norm(u) for u in unknown}
+    for row in _db()['entries']:
+        vague = {norm(t) for t in row.get('underspecified_terms', ())}
+        if vague and words == vague and set(names) == set(row['ingredients']) - set(row['underspecified_terms']):
+            return {'status': 'UNDERSPECIFIED_NOTIFICATION_CANDIDATE', 'candidate_entry_id': row['id'], 'notice': row['notice'],
+                    'reason': f"{row['notice']} names a component only as '{row['underspecified_terms'][0].title()}'. "
+                              'No list can be shown to equal it, so BANLAG abstains; review the product against the notice text.'}
+    return None
 
 
 @lru_cache(maxsize=1)
@@ -125,6 +141,10 @@ def match_formula(ingredients, db=None):
     hits = [lexicon().get(norm(v)) for v in ingredients]
     unknown = [ingredients[i] for i, h in enumerate(hits) if h is None]
     if unknown:
+        known = [h[0] for h in hits if h is not None]
+        cand = _underspecified_candidate(known, unknown) if len(set(known)) == len(known) else None
+        if cand:
+            return cand
         return {'status': 'UNKNOWN_FORMULATION', 'reason': 'Unrecognized or ambiguous ingredient; abstain.', 'unrecognized': unknown}
     names = [h[0] for h in hits]
     if len(set(names)) != len(names):

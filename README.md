@@ -49,6 +49,7 @@ The archived run from 10 October 2026 made three successful SerpApi calls: a Goo
 - Its prohibition-related block cites **[1]** and **[2]** via SerpApi's `reference_indexes`.
 - Reference **[2]** names four ingredients, including Chlordiazepoxide, which gives a **candidate** match to **F09 / S.O. 3071(E)**, `+chlordiazepoxide` against the F08 target.
 - Reference **[1]** is truncated, so its formulation stays **unresolved**.
+- **The cited pages agree.** Fetched on 11 October 2026, about 40 hours after the capture, both pages behind [1] and [2] state the **F09** prohibition, S.O. 3071(E), word for word. Neither states the F08 one. That's what those URLs returned when fetched, not necessarily what Google saw. The hashes and quoted sentences are in [`evidence/cited_pages/`](evidence/cited_pages/run-20261010T024515Z-9415e2/CITED_PAGES.json).
 
 **What this shows:** a meaningful formulation difference made visible at the level of one AI statement and its captured citations. **What it doesn't show:** that Google concealed anything, that either source page is wrong, or that a live omission was verified. See [Limitations](#limitations).
 
@@ -58,8 +59,21 @@ The capture is preserved at [`evidence/serpapi/run-20261010T024515Z-9415e2/`](ev
 
 Before the SerpApi capture, ten exact formulations were searched on signed-out Google India, with the query design and coding rules locked before the first query.
 
-- In **7 of 10** compositions, the single-coder labels recorded present-use descriptions without India-specific regulatory context in both passes. When asked about status directly, the same surface described the restrictions.
+- In **7 of 10** compositions (95% CI 40% to 89%), the single-coder labels recorded present-use descriptions without India-specific regulatory context in both passes. When asked about status directly, the same surface described the restrictions.
 - One literal notice-number discrepancy was preserved: the AI cited **S.O. 3080(E)**, while the Gazette notice for Paracetamol + Lignocaine is **S.O. 3079(E)**. That's a string comparison, not a claim about intent.
+
+### Results with uncertainty
+
+`python -m banlag.stats` recomputes these from the locked corpus, with 95% Wilson intervals:
+
+| Measure | k / n | 95% CI |
+|---|---|---|
+| Uses answers describing present use with no India restriction | 14 / 20 | 48% to 86% |
+| Combinations labelled that way in both passes | 7 / 10 | 40% to 89% |
+| Of those with a status capture, the status answer stated the prohibition | 7 / 7 | 65% to 100% |
+| Engine label equals the coder's locked label (primary captures) | 20 / 20 | 84% to 100% |
+
+These are one session on one night, ten chosen combinations and one coder. The intervals cover sampling noise inside that design, not how often Google behaves this way in general, and agreement with one coder isn't accuracy.
 
 ## Why SerpApi is essential
 
@@ -108,14 +122,14 @@ A fresh clone replays the exported run as `ARCHIVED_SERPAPI_CAPTURE`: its hashes
 
 BANLAG is an evidence exploration instrument, not an automated legal or medical decision-maker. Each limit is stated once, here:
 
-- **One capture run.** The SerpApi evidence is a single run, at one time and one location. AI Mode was not captured, and the status search's AI Overview was not fetched. No verified live omission and no live Tier 2/3 finding was established.
-- **Cited pages were not fetched.** Observations are about captured citation *metadata*. An ingredient-name match in a snippet doesn't prove the snippet lists every ingredient.
+- **One capture run.** The SerpApi evidence is a single run, at one time and one location. AI Mode was not captured, and the status search's AI Overview was not fetched. The collector and the batch planner (`python -m banlag.batch`) now support both, across days and cities, but no new captures have been made. No verified live omission and no live Tier 2/3 finding was established.
+- **Cited pages were fetched later, not at capture time.** The pages cited by the one SerpApi run were fetched and hashed about 40 hours after it (`python -m banlag.citefetch`). One returned HTTP 403. A page can change after Google cites it, so these snapshots don't establish what Google saw. Page bytes stay local (third-party content), and only hashes and short quotes are published. An ingredient-name match in a snippet doesn't prove the snippet lists every ingredient.
 - **The parser is experimental.** The English parser uses bounded rules with known failure modes, and it has no independently measured accuracy. Its labels, tiers and readings are marked experimental for human review.
-- **Coverage.** The registry covers 10 of the 16 notifications. The browser study is single-coder, not independently recoded, and not a representative estimate of Google's accuracy.
+- **Coverage.** The registry covers all 16 notifications. F07 ("Aloe vera + Vitamin E + Herbal") names one component only as "Herbal", so the matcher abstains and never reports an exact match. F02 to F07 were added from the same hash-pinned Gazette and were outside the independent legal audit. The browser study still covers the original ten combinations. It is single-coder, not independently recoded, and not a representative estimate of Google's accuracy.
 - **Contract scope.** The public contract recursively filters assessment and evidence routes. Registry, exact-match and status routes are typed pass-throughs ([docs/PUBLIC_CONTRACT.md](docs/PUBLIC_CONTRACT.md)).
 - **Legal status.** No amendment or stay was found as of 10 October 2026, but those searches weren't exhaustive. Recheck before any regulatory use.
 - **No accusations.** BANLAG makes no claims about Google, publishers, pharmacies, manufacturers or products, and it does not explain why an AI produced an answer.
-- **Engineering tests are not accuracy.** CI runs 265 regression, adversarial and property tests. They verify behaviour, not general-language classification accuracy.
+- **Engineering tests are not accuracy.** CI runs 293 regression, adversarial and property tests. They verify behaviour, not general-language classification accuracy.
 
 > **Medical safety:** Do not start, stop or change any medication based on BANLAG. A Gazette ban on manufacture, sale or distribution does not by itself make a patient's possession or use an offence. Speak to a doctor or pharmacist.
 
