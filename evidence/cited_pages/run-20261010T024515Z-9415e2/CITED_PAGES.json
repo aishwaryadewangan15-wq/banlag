@@ -1,0 +1,269 @@
+{
+ "schema": "banlag.cited_pages.v1",
+ "run_id": "run-20261010T024515Z-9415e2",
+ "run_origin": "ARCHIVED_SERPAPI_CAPTURE",
+ "target": {
+  "id": "F08",
+  "notice": "S.O. 3078(E)"
+ },
+ "captured_at": "2026-10-10T02:45:24+00:00",
+ "fetcher": "BANLAG-citefetch/0.1 (+https://github.com/aishwaryadewangan15-wq/banlag; research snapshot of a cited page)",
+ "statement": "Pages were fetched after the capture. Each record is what that URL returned at fetched_at, not what Google saw when it cited it. Text checks are string matches and sentence-level reads, not a legal finding.",
+ "pages": [
+  {
+   "url": "https://nordic.org.in/product/cypa/",
+   "cited_by": [
+    "AI Overview [0]"
+   ],
+   "titles": [
+    "Clidinium Bromide Dicyclomine HCl and Paracetamol Tablets"
+   ],
+   "fetched_at": "2026-10-11T18:38:44+00:00",
+   "lag_after_capture_hours": 39.9,
+   "outcome": "FETCHED",
+   "http_status": 200,
+   "final_url": "https://nordic.org.in/product/cypa/",
+   "content_type": "text/html",
+   "bytes": 208005,
+   "sha256": "41bd5688cc75ef97fd4e0b2a6995e60e6480736e63225538015ccc9741aa922e",
+   "page_title": "Clidinium Bromide Dicyclomine HCl and Paracetamol Tablets : CYPA",
+   "text": {
+    "status": "EXTRACTED",
+    "chars": 5954,
+    "sha256": "7ca691033c99fe4e416cbb81b8d1e6626d3f40387e9baa7c2a42b3a50a60c152",
+    "registry_names_present": [
+     "clidinium bromide",
+     "dicyclomine",
+     "paracetamol"
+    ],
+    "notice_numbers_present": [],
+    "exact_restriction_statements": {},
+    "states_target_restriction": false
+   }
+  },
+  {
+   "url": "https://teamleaseregtech.com/updates/article/57033/mohfw-notified-regarding-the-prohibition-of-fixed-dose-combination-of-/",
+   "cited_by": [
+    "AI Overview [1]"
+   ],
+   "titles": [
+    "MoHFW notified regarding the Prohibition of"
+   ],
+   "fetched_at": "2026-10-11T18:38:44+00:00",
+   "lag_after_capture_hours": 39.9,
+   "outcome": "FETCHED",
+   "http_status": 200,
+   "final_url": "https://teamleaseregtech.com/updates/article/57033/mohfw-notified-regarding-the-prohibition-of-fixed-dose-combination-of-/",
+   "content_type": "text/html",
+   "bytes": 394640,
+   "sha256": "4a4c7994decdfced867687618a6ceb5e451391a728b784e6fd89ad69084e4617",
+   "page_title": "MoHFW notified regarding the Prohibition of Fixed Dose Combination of Dicyclomine + Paracetamol + Clidinium Bromide + Chlordiazepoxide",
+   "text": {
+    "status": "EXTRACTED",
+    "chars": 8719,
+    "sha256": "a5045208e26781171b6a207950ebf5cc5717fa19bce86b643474a422d91f6a19",
+    "registry_names_present": [
+     "chlordiazepoxide",
+     "clidinium bromide",
+     "dicyclomine",
+     "paracetamol"
+    ],
+    "notice_numbers_present": [
+     "S.O. 3071(E)"
+    ],
+    "exact_restriction_statements": {
+     "F09": {
+      "notice": "S.O. 3071(E)",
+      "sentences": [
+       "MoHFW notified regarding the Prohibition of Fixed Dose Combination of Dicyclomine + Paracetamol + Clidinium Bromide + Chlordiazepoxide.",
+       "The Ministry of Health and Family Welfare (MoHFW) on June 15, 2026, notified regarding the Prohibition of Fixed Dose Combination of Dicyclomine + Paracetamol + Clidinium Bromide + Chlordiazepoxide..",
+       "Document for MoHFW notified regarding the Prohibition of Fixed Dose Combination of Dicyclomine + Paracetamol + Clidinium Bromide + Chlordiazepoxide."
+      ]
+     }
+    },
+    "states_target_restriction": false
+   }
+  },
+  {
+   "url": "https://complinity.com/legal-update/prohibition-on-manufacture-sale-and-distribution-of-fixed-dose-combination-of-dicyclomine-paracetamol-clidinium-bromide-chlordiazepoxide-24908/",
+   "cited_by": [
+    "AI Overview [2]"
+   ],
+   "titles": [
+    "Prohibition on Manufacture, Sale and Distribution of Fixed Dose ..."
+   ],
+   "fetched_at": "2026-10-11T18:38:46+00:00",
+   "lag_after_capture_hours": 39.9,
+   "outcome": "FETCHED",
+   "http_status": 200,
+   "final_url": "https://complinity.com/legal-update/prohibition-on-manufacture-sale-and-distribution-of-fixed-dose-combination-of-dicyclomine-paracetamol-clidinium-bromide-chlordiazepoxide-24908/",
+   "content_type": "text/html",
+   "bytes": 507777,
+   "sha256": "2e6f3147e24cbdf6bf8e7b3ded5db5d0cf3489fd2f31d5c0987185278ae7ae15",
+   "page_title": "Prohibition on Manufacture, Sale and Distribution of Fixed Dose Combination of Dicyclomine + Paracetamol + Clidinium Bromide + Chlordiazepoxide",
+   "text": {
+    "status": "EXTRACTED",
+    "chars": 40458,
+    "sha256": "981968f7f470732f4cf22fc0e077763c827c4261b21c55580ce13697e82cc4d4",
+    "registry_names_present": [
+     "chlordiazepoxide",
+     "clidinium bromide",
+     "dicyclomine",
+     "paracetamol"
+    ],
+    "notice_numbers_present": [
+     "S.O. 3071(E)"
+    ],
+    "exact_restriction_statements": {
+     "F09": {
+      "notice": "S.O. 3071(E)",
+      "sentences": [
+       "Pursuant to Notification S.O. 3071(E) issued under Section 26A of the Drugs and Cosmetics Act, 1940, the Central Government has prohibited the manufacture, sale and distribution of the fixed dose combination Dicyclomine + Paracetamol + Clidinium Bromide + Chlordiazepoxide for human use with immediat"
+      ]
+     }
+    },
+    "states_target_restriction": false
+   }
+  },
+  {
+   "url": "https://www.1mg.com/generics/dicyclomine-paracetamol-401385",
+   "cited_by": [
+    "AI Overview [3]"
+   ],
+   "titles": [
+    "Dicyclomine + Paracetamol: View Uses, Side Effects ... - 1mg"
+   ],
+   "fetched_at": "2026-10-11T18:38:47+00:00",
+   "lag_after_capture_hours": 39.9,
+   "outcome": "FETCHED",
+   "http_status": 200,
+   "final_url": "https://www.1mg.com/generics/dicyclomine-paracetamol-401385",
+   "content_type": "text/html",
+   "bytes": 328036,
+   "sha256": "e263f7495be3ab20f50d5385e6f504bcac7d5c0ad5f2e5bc128b5408d4e81d1a",
+   "page_title": "Dicyclomine + Paracetamol: View Uses, Side Effects and Medicines | 1mg",
+   "text": {
+    "status": "EXTRACTED",
+    "chars": 6061,
+    "sha256": "926722789372dae3b5e3c16e2a1e989186b8ddaa98dbbeb29bdaa02973a1ca4d",
+    "registry_names_present": [
+     "dicyclomine",
+     "paracetamol"
+    ],
+    "notice_numbers_present": [],
+    "exact_restriction_statements": {},
+    "states_target_restriction": false
+   }
+  },
+  {
+   "url": "https://www.goodrx.com/dicyclomine/what-is?srsltid=AU7gw4XjIJv_PEYhra3Nwhi-R4pYzQdsKeoMEjapthbyriHKXyTt6NZ8",
+   "cited_by": [
+    "AI Overview [4]"
+   ],
+   "titles": [
+    "What Is Dicyclomine (Bentyl)? Uses, Side Effects, Dosage - GoodRx"
+   ],
+   "fetched_at": "2026-10-11T18:38:48+00:00",
+   "lag_after_capture_hours": 39.9,
+   "outcome": "HTTP_ERROR",
+   "http_status": 403,
+   "final_url": "https://www.goodrx.com/dicyclomine/what-is?srsltid=AU7gw4XjIJv_PEYhra3Nwhi-R4pYzQdsKeoMEjapthbyriHKXyTt6NZ8",
+   "content_type": "text/html",
+   "bytes": 5533,
+   "sha256": "e089f5222bdbeba71667adea30e362f1601acc4a04cc7620c6908c35ec58763b"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Clidinium_bromide",
+   "cited_by": [
+    "AI Overview [5]"
+   ],
+   "titles": [
+    "Clidinium bromide - Wikipedia"
+   ],
+   "fetched_at": "2026-10-11T18:38:48+00:00",
+   "lag_after_capture_hours": 39.9,
+   "outcome": "FETCHED",
+   "http_status": 200,
+   "final_url": "https://en.wikipedia.org/wiki/Clidinium_bromide",
+   "content_type": "text/html",
+   "bytes": 170173,
+   "sha256": "9c0c2ba77a66f0abf8e6768e9f9d53348c769ce7df694aa2c0559a9c01a51764",
+   "page_title": "Clidinium bromide - Wikipedia",
+   "text": {
+    "status": "EXTRACTED",
+    "chars": 10346,
+    "sha256": "bc57d58ccb06d7c945552af88f29fbe65f71d62175a02dd91a9c2659dcb956bf",
+    "registry_names_present": [
+     "chlordiazepoxide",
+     "clidinium bromide",
+     "dicyclomine"
+    ],
+    "notice_numbers_present": [],
+    "exact_restriction_statements": {},
+    "states_target_restriction": false
+   }
+  },
+  {
+   "url": "https://www.1mg.com/generics/dicyclomine-clidinium-dimethicone-paracetamol-401371",
+   "cited_by": [
+    "AI Overview [6]"
+   ],
+   "titles": [
+    "Dicyclomine + Clidinium + Dimethicone + Paracetamol: View Uses, Side Effects and Medicines | 1mg"
+   ],
+   "fetched_at": "2026-10-11T18:38:48+00:00",
+   "lag_after_capture_hours": 39.9,
+   "outcome": "FETCHED",
+   "http_status": 200,
+   "final_url": "https://www.1mg.com/generics/dicyclomine-clidinium-dimethicone-paracetamol-401371",
+   "content_type": "text/html",
+   "bytes": 255851,
+   "sha256": "98b6cde156bbc393f0a837111d9bc3ab4611afec1338a94e347fcc137b12a780",
+   "page_title": "Dicyclomine + Clidinium + Dimethicone + Paracetamol: View Uses, Side Effects and Medicines | 1mg",
+   "text": {
+    "status": "EXTRACTED",
+    "chars": 1542,
+    "sha256": "f439501b424ae1955f7774250591711015ab9b97dfaa5fdd32ba250368b29580",
+    "registry_names_present": [
+     "clidinium bromide",
+     "dicyclomine",
+     "dimethicone",
+     "paracetamol"
+    ],
+    "notice_numbers_present": [],
+    "exact_restriction_statements": {},
+    "states_target_restriction": false
+   }
+  },
+  {
+   "url": "https://www.apollopharmacy.in/salt/dicyclomine-paracetamol",
+   "cited_by": [
+    "AI Overview [7]"
+   ],
+   "titles": [
+    "dicyclomine-paracetamol | View uses, side-effects, medicines"
+   ],
+   "fetched_at": "2026-10-11T18:38:50+00:00",
+   "lag_after_capture_hours": 39.9,
+   "outcome": "FETCHED",
+   "http_status": 200,
+   "final_url": "https://www.apollopharmacy.in/salt/dicyclomine-paracetamol",
+   "content_type": "text/html",
+   "bytes": 338321,
+   "sha256": "7f52a283e41cea4656b017dcccf42438f7cbef9995300486351315664f18e18f",
+   "page_title": "dicyclomine-paracetamol | View uses, side-effects, medicines | Apollo Pharmacy",
+   "text": {
+    "status": "EXTRACTED",
+    "chars": 18476,
+    "sha256": "77e40477bbcc2f1997026b67a93fbdf540a4e36fe98c0af7178f984e6a97c3a3",
+    "registry_names_present": [
+     "dicyclomine",
+     "paracetamol"
+    ],
+    "notice_numbers_present": [],
+    "exact_restriction_statements": {},
+    "states_target_restriction": false
+   }
+  }
+ ]
+}
