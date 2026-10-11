@@ -17,6 +17,10 @@ No test touches the network or needs a SerpApi key. Five tests skip unless the m
 | **Corpus integrity**: pinned anchor, fail-closed loading, byte-identical re-ingestion of the locked archive | `test_corpus.py`, `test_evidence_ingest.py`, `test_audit2_exact_composition_citations.py` (A) |
 | **Public output contract**: parser readings never reach a public headline | `test_public_contract.py` |
 | **Local web server**: loopback only, DNS rebinding, cross-site, CSP, size limits, no outbound modules | `test_http.py`, `test_http_hardening.py`, `test_capture_store.py` (AST import closure) |
+| **Registry completeness**: all 16 notices; F07 ('Herbal') is never an exact match | `test_core.py`, `test_properties.py` |
+| **Capture planning**: preregistered wording, budgets, unique approvals, status follow-ups | `test_batch.py`, `test_status_followup.py` |
+| **Cited-page snapshots**: SSRF guards, hashes, notice attribution, tamper checks | `test_citefetch.py` |
+| **Study statistics**: Wilson intervals, kappa, pinned study numbers | `test_stats.py` |
 | **Static demo**: built from real server responses, local UI unchanged | `test_static_demo.py` |
 
 ## Audit regression suites
