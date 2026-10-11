@@ -270,6 +270,11 @@ def adversarial_benchmark():
             'false_E_flags': {s: sum(r[s] == 'E' and r['gold'] != 'E' for r in rows) for s in systems}}
 
 
+def _study_entries(db):
+    """The ten preregistered study combinations. Registry entries without a study query (F02-F07) have no evidence to replay."""
+    return [e for e in db['entries'] if e.get('query_id')]
+
+
 def _failed_closed(integ):
     """Evidence suppressed: no labels, no G1 verdict, no findings, every publication gate WITHHOLD."""
     db = registry()
@@ -278,7 +283,7 @@ def _failed_closed(integ):
     cases = [{'entry': e, 'safety_banner': SAFETY_BANNER.get(e['safety_banner']), 'in_family': e['query_id'] in G1_RULE['family'],
               'g1_locked': {'A': None, 'B': None}, 'g1_engine': {'A': None, 'B': None}, 'g1_positive': False,
               'uses': {'A': None, 'B': None}, 'status': None, 'ai_mode': None, 'paired_prompt_contrast': None, 'controls': [],
-              'spelling_variant_note': None, 'publication_gate': dict(gate), 'headline': e['id'] == HEADLINE_ENTRY} for e in db['entries']]
+              'spelling_variant_note': None, 'publication_gate': dict(gate), 'headline': e['id'] == HEADLINE_ENTRY} for e in _study_entries(db)]
     return {'corpus': {'integrity': integ, 'sha256': integ['corpus_sha256'], 'manifest_match': False, 'origin': None,
                        'origin_statement': 'Replay corpus failed its integrity check; archive evidence is suppressed.',
                        'prereg_sha256': None, 'archive_manifest_sha256': None, 'lock_records': {}, 'n_records': 0, 'screenshots': {}},
@@ -319,7 +324,7 @@ def _build(corpus):
     engine_labels = {q: (by_id[f'PassA_{q}']['engine_label'], by_id[f'PassB_{q}']['engine_label']) for q in locked}
     now = dt.datetime.now(dt.timezone.utc)
     cases = []
-    for entry in db['entries']:
+    for entry in _study_entries(db):
         q = entry['query_id']
         s_id = 'Status_S' + q[1:]
         uses_a, uses_b = by_id.get(f'PassA_{q}'), by_id.get(f'PassB_{q}')
