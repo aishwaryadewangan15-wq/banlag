@@ -497,6 +497,7 @@ async function init() {
     const b = el('div', 'banner warn', '⛔ Replay corpus failed its integrity check — archive labels, G1 verdict and findings are suppressed and every publication gate is WITHHOLD. ' + integ.reasons.join('; '));
     document.querySelector('.content').prepend(b);
   }
+  if (STATIC) $('netStatus').textContent = '◌ Read-only static demo · replayed responses';
   $('provBadge').textContent = `Archive: preregistered browser test, G1 ${o.g1.locked.verdict} · Live: ${o.live.sealed_runs} sealed SerpApi run(s)`;
   $('footCorpus').textContent = `REPLAY CORPUS ${short(o.corpus.sha256)} · PREREG ${short(o.corpus.prereg_sha256)} · LEGAL STATUS AS OF ${o.legal_status.as_of}`;
   renderSidebar(); renderG1(); renderIntegrity(); renderSamples();
