@@ -63,3 +63,24 @@ jobs:
       - run: pip install -e .
       - name: Console script resolves
         run: python -c "import shutil, sys; sys.exit(0 if shutil.which('banlag') else 1)"
+
+  static-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Build the read-only static demo
+        run: python scripts/build_static_demo.py --out _site
+      - name: Smoke-check the build
+        run: |
+          test -f _site/index.html
+          test -f _site/static-config.js
+          test -f _site/api/overview.json
+          test -f _site/api/case_F08.json
+          grep -q 'static-config.js' _site/index.html
+
