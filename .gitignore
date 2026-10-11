@@ -24,3 +24,11 @@ Thumbs.db
 # Internal build instructions and local tool config (not part of the release)
 CLAUDE_BUILD_CONTINUATION_GOAL.txt
 .claude/
+
+# Build and coverage
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+.venv/
