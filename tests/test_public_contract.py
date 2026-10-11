@@ -19,7 +19,7 @@ from banlag.engine import evaluate, evaluate_run
 from banlag.legal import entry_by_id, match_formula
 from banlag.public import EXP, compare_sets, observe_answer, public
 from banlag.server import Handler, _evaluate_view
-from tests.test_rc3_repairs import BAN, LEAD, SQ, X, SealedEndToEnd, organic, payload
+from tests.test_audit4_lead_clause_binding import BAN, LEAD, SQ, X, SealedEndToEnd, organic, payload
 
 ROOT = Path(__file__).resolve().parent.parent
 RUN = 'run-20261010T024515Z-9415e2'
