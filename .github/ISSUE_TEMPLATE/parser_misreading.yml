@@ -1,0 +1,31 @@
+name: Parser misreading
+description: BANLAG's experimental parser read a sentence wrongly.
+labels: [parser]
+body:
+  - type: textarea
+    id: sentence
+    attributes:
+      label: Exact sentence(s)
+      description: Paste the text exactly, including the sentences around it if they matter.
+    validations:
+      required: true
+  - type: input
+    id: formulation
+    attributes:
+      label: Target formulation
+      placeholder: "F08 — Dicyclomine + Paracetamol + Clidinium Bromide"
+    validations:
+      required: true
+  - type: input
+    id: got
+    attributes:
+      label: What BANLAG said
+      placeholder: "e.g. RESTRICTION_MENTIONED"
+    validations:
+      required: true
+  - type: input
+    id: expected
+    attributes:
+      label: What it should have said, and why
+    validations:
+      required: true
