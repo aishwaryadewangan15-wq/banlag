@@ -6,7 +6,7 @@ B  composition: 'exact' means exact - additions in parentheticals, 'as well as',
 C  citations: title, snippet and URL are reconciled, not ranked; conflicts, truncation and multiple formulations stay visible.
 D  restriction status bound to its predicate: negation window, conditions, proposals, dates, cross-sentence reversal.
 E  T2/T3 promotion needs a current Indian restriction on the exact set; a sealed capture is not proof of a legal fact.
-Every class keeps positive controls so a fix cannot pass by refusing everything. Before/after runs: docs/proof/codex2_*.txt.
+Every class keeps positive controls so a fix cannot pass by refusing everything. Before/after runs: engineering-history branch, docs/proof/codex2_*.txt.
 """
 import copy
 import datetime as dt

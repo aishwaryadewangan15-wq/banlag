@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "banlag"
+dynamic = ["version"]
+description = "Local research workbench that audits Google AI answers and their citations against India's exact Section 26A drug-combination notifications."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "The BANLAG authors" }]
+keywords = ["serpapi", "ai-overview", "citations", "drug-regulation", "india", "audit"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = []  # standard library only, by design
+
+[project.optional-dependencies]
+dev = ["ruff>=0.6", "coverage>=7"]
+
+[project.urls]
+Homepage = "https://github.com/aishwaryadewangan15-wq/banlag"
+Issues = "https://github.com/aishwaryadewangan15-wq/banlag/issues"
+
+[project.scripts]
+banlag = "banlag.server:main"
+banlag-collector = "banlag.collector:main"
+
+[tool.setuptools]
+packages = ["banlag", "banlag.baselines"]
+
+[tool.setuptools.package-data]
+banlag = ["*.json"]
+"banlag.baselines" = ["*.json"]
+
+[tool.setuptools.dynamic]
+version = { attr = "banlag.__version__" }
+
+[tool.ruff]
+target-version = "py310"
+line-length = 160
+extend-exclude = ["evidence", "captures"]
+
+[tool.ruff.lint]
+# Phase 1 gate: syntax errors and undefined names only. Widened as the code is refactored.
+select = ["E9", "F63", "F7", "F82"]
+
+[tool.coverage.run]
+source = ["banlag"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true

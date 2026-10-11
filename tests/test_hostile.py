@@ -1,6 +1,6 @@
 """Hostile regression tests for the independently audited blockers (BANLAG_STARTER_SECURITY_EVIDENCE_AUDIT_20261010).
 
-Run against the V0.1 starter, the blocker tests here fail (see docs/HARDENING_REPORT.md for the recorded before/after
+Run against the V0.1 starter, the blocker tests here fail (see the engineering-history branch for the recorded before/after
 run); against V0.2 they pass. No network, no SerpApi. All URLs are .invalid.
 """
 import copy

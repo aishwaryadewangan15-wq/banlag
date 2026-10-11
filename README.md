@@ -1,5 +1,7 @@
 # BANLAG — Auditing AI Search Against India's Drug Regulations
 
+[![CI](https://github.com/aishwaryadewangan15-wq/banlag/actions/workflows/ci.yml/badge.svg)](https://github.com/aishwaryadewangan15-wq/banlag/actions/workflows/ci.yml) ![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue) ![Dependencies: none](https://img.shields.io/badge/runtime%20dependencies-none-brightgreen) [![License: MIT](https://img.shields.io/badge/code-MIT-yellow)](LICENSE)
+
 **When AI cites a regulation, does the evidence actually match the drug formulation?**
 
 *SerpApi India Hackathon 2026 | Local research workbench | Reproducible evidence exploration*
@@ -105,7 +107,7 @@ The project's security and evidence-handling mechanisms include:
 
 The final release underwent extensive regression and adversarial testing. A fresh-clone, keyless verification of the submitted commit ran 225 tests: 220 passed and five key-dependent tests were skipped. These are engineering verification results, not a measured general-language classification accuracy rate.
 
-For test details and historical engineering decisions, see [docs/HARDENING_REPORT.md](docs/HARDENING_REPORT.md), [docs/GATE_STATUS.md](docs/GATE_STATUS.md) and [docs/PUBLIC_CONTRACT.md](docs/PUBLIC_CONTRACT.md).
+The output contract is described in [docs/PUBLIC_CONTRACT.md](docs/PUBLIC_CONTRACT.md). Historical engineering decisions, audit rounds and before/after proofs are summarised in [docs/ENGINEERING_HISTORY.md](docs/ENGINEERING_HISTORY.md).
 
 ## Run BANLAG locally
 
@@ -121,6 +123,13 @@ Start the application:
 
 ```bash
 python -m banlag
+```
+
+Or install it as a command (editable install, so the bundled web UI and evidence stay in place):
+
+```bash
+pip install -e .
+banlag
 ```
 
 Then open `http://127.0.0.1:8765`. On Windows, you can also run `RUN_WINDOWS.bat`.
@@ -157,15 +166,11 @@ BANLAG does not make accusations about Google, source publishers, pharmacies, ma
 
 ## Reproducibility and release identity
 
-The submitted release commit is `063a0d1c93ff24e973b4dbacab3d6f439542a653`.
+The commit submitted to the SerpApi India Hackathon 2026 is `063a0d1c93ff24e973b4dbacab3d6f439542a653`. It stays permanently reachable, together with its source fingerprint (`c635055d573cea07146c68b9a9fb89ddd06bdf1a698ca242b63bf02d7d048f73`) and the method behind it, on the [`engineering-history`](https://github.com/aishwaryadewangan15-wq/banlag/tree/engineering-history) branch.
 
-Its authoritative source fingerprint is `c635055d573cea07146c68b9a9fb89ddd06bdf1a698ca242b63bf02d7d048f73`.
+Every change since is tested in CI on Python 3.10–3.13 across Linux, Windows and macOS. See [CHANGELOG.md](CHANGELOG.md).
 
-The fingerprint covers the specified Python, JavaScript, HTML, CSS and JSON source files using the locale-independent method documented in [docs/proof/RELEASE_IDENTITY.md](docs/proof/RELEASE_IDENTITY.md).
-
-`BUILD_SHA256_MANIFEST.json` is not the authoritative release identity. Its `status` field (`v0.2_local_build_not_published`) is a label left over from an earlier build stage, and it lists one internal build-instruction file that was deliberately excluded from the public repository. The accepted source fingerprint is documented separately in [docs/proof/RELEASE_IDENTITY.md](docs/proof/RELEASE_IDENTITY.md).
-
-Earlier benchmark results and failed acceptance tests remain available in the engineering history. They should not be interpreted as accuracy measurements of the submitted release.
+Earlier benchmark results and failed acceptance tests remain in the engineering history. They should not be read as accuracy measurements of any release.
 
 ## Development and prior art
 
@@ -181,3 +186,11 @@ The source archive, tests, engineering reports and documented limitations are pr
 * [Press Information Bureau release](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2275595)
 * [Central Drugs Standard Control Organisation](https://cdsco.gov.in/opencms/opencms/en/Drugs/FDC/)
 * [SerpApi Google AI Overview API](https://serpapi.com/google-ai-overview-api)
+
+## License
+
+Code is released under the [MIT License](LICENSE). BANLAG's own annotations, registry and corpus coding are released under [CC BY 4.0](LICENSE-DATA.md). Third-party material in `evidence/` (captured search results, screenshots and quoted source text) remains the property of its respective owners and is included for research and verification only.
+
+## Citing BANLAG
+
+See [CITATION.cff](CITATION.cff), or use GitHub's "Cite this repository" button.

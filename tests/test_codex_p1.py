@@ -1,7 +1,7 @@
 """Regression tests for the independent Codex hostile audit (10 Oct 2026): five P1 defects and two P2 issues.
 
 Each P1 class contains the original counterexample, broader edge cases, and controls that must keep working, so a fix
-cannot pass by over-correcting. Before/after runs of the original counterexamples: docs/proof/codex_p1_*.txt.
+cannot pass by over-correcting. Before/after runs of the original counterexamples: engineering-history branch, docs/proof/codex_p1_*.txt.
 """
 import json
 import shutil

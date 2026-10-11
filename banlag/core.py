@@ -1,6 +1,6 @@
 """Compatibility surface for the V0.1 starter API (inherited names, hardened behaviour).
 
-V0.1 -> V0.2 changes (see docs/HARDENING_REPORT.md):
+V0.1 -> V0.2 changes (full history on the engineering-history branch):
 - evaluate(): delegates to engine.evaluate(); imports are USER_SUPPLIED_UNVERIFIED whatever source_kind they declare,
   citations bind per claim and per surface, imported cited-page text never counts as verified evidence.
 - text_identifies_exact(): sentence-level; a ban in a neighbouring sentence on another product no longer counts.
