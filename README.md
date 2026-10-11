@@ -115,7 +115,7 @@ BANLAG is an evidence exploration instrument, not an automated legal or medical 
 - **Contract scope.** The public contract recursively filters assessment and evidence routes. Registry, exact-match and status routes are typed pass-throughs ([docs/PUBLIC_CONTRACT.md](docs/PUBLIC_CONTRACT.md)).
 - **Legal status.** No amendment or stay was found as of 10 October 2026, but those searches weren't exhaustive. Recheck before any regulatory use.
 - **No accusations.** BANLAG makes no claims about Google, publishers, pharmacies, manufacturers or products, and it does not explain why an AI produced an answer.
-- **Engineering tests are not accuracy.** CI runs over 220 regression and adversarial tests. They verify behaviour, not general-language classification accuracy.
+- **Engineering tests are not accuracy.** CI runs 265 regression, adversarial and property tests. They verify behaviour, not general-language classification accuracy.
 
 > **Medical safety:** Do not start, stop or change any medication based on BANLAG. A Gazette ban on manufacture, sale or distribution does not by itself make a patient's possession or use an offence. Speak to a doctor or pharmacist.
 
