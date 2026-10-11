@@ -10,10 +10,10 @@ with the reason inline (search 'CHANGED IN V0.2'):
   - test_status_contrast_is_not_proof_by_itself: FIXTURE ADAPTED IN RC-3 (owner's RC-3 instruction, Codex RC-2 audit P2).
     A status contrast now requires that the separately asked question is supplied and names exactly the target, so the
     fixture supplies that question. Both assertions (contrast true with a uses observation; false without one) are unchanged;
-    the question-absent case is covered by tests/test_rc3_repairs.py.
+    the question-absent case is covered by tests/test_audit4_lead_clause_binding.py.
 """
 import copy,unittest
-from banlag.core import registry,canonical,match_formula,classify,extract_ai,evaluate,text_identifies_exact
+from banlag.core import registry,match_formula,classify,extract_ai,evaluate,text_identifies_exact
 
 class RegistryTests(unittest.TestCase):
     def test_ten_exact_notices(self):
