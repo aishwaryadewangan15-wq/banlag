@@ -1,0 +1,52 @@
+name: Refresh demo screenshots
+
+# Re-captures README screenshots and the hero GIF from the static demo when the UI changes on a feature branch,
+# and commits them back to that same branch. It never runs on main and never pushes to main.
+on:
+  push:
+    branches-ignore: [main]
+    paths:
+      - "web/**"
+      - "scripts/build_static_demo.py"
+      - "scripts/capture_demo.py"
+      - ".github/workflows/demo-assets.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: demo-assets-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  capture:
+    if: github.ref_name != 'main' && github.repository_owner == 'aishwaryadewangan15-wq'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install Playwright and ffmpeg
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+          sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
+      - run: python scripts/build_static_demo.py --out _site
+      - run: python scripts/capture_demo.py --site _site --out docs/assets
+      - name: Commit refreshed assets to this branch
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          test "$BRANCH" != "main"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/assets
+          if git diff --cached --quiet; then echo "No change"; exit 0; fi
+          git commit -m "docs: refresh demo screenshots and GIF"
+          git push origin "HEAD:refs/heads/$BRANCH"
