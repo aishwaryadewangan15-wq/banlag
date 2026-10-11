@@ -16,11 +16,16 @@ import copy,unittest
 from banlag.core import registry,match_formula,classify,extract_ai,evaluate,text_identifies_exact
 
 class RegistryTests(unittest.TestCase):
-    def test_ten_exact_notices(self):
-        db=registry();self.assertEqual(len(db['entries']),10)
-        self.assertEqual(len(set(x['notice'] for x in db['entries'])),10)
+    def test_sixteen_exact_notices(self):  # V0.1 shipped ten; the registry now covers all sixteen S.O. 3068(E)-3083(E)
+        db=registry();self.assertEqual(len(db['entries']),16)
+        self.assertEqual(len(set(x['notice'] for x in db['entries'])),16)
+        self.assertEqual(sorted(x['notice'] for x in db['entries']),[f'S.O. {n}(E)' for n in range(3068,3084)])
         for entry in db['entries']:
-            self.assertEqual(match_formula(entry['ingredients'])['entry']['id'],entry['id'])
+            r=match_formula(entry['ingredients'])
+            if entry.get('underspecified_terms'):
+                self.assertEqual((r['status'],r['candidate_entry_id']),('UNDERSPECIFIED_NOTIFICATION_CANDIDATE',entry['id']))
+            else:
+                self.assertEqual(r['entry']['id'],entry['id'])
     def test_aliases(self):
         self.assertEqual(match_formula(['amoxycillin','serrapeptase'])['entry']['id'],'F14')
         self.assertEqual(match_formula(['lidocaine','acetaminophen'])['entry']['id'],'F11')
