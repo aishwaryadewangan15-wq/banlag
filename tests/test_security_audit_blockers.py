@@ -3,7 +3,6 @@
 Run against the V0.1 starter, the blocker tests here fail (see the engineering-history branch for the recorded before/after
 run); against V0.2 they pass. No network, no SerpApi. All URLs are .invalid.
 """
-import copy
 import unittest
 
 from banlag.core import evaluate, match_formula, text_identifies_exact

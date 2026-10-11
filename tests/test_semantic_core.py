@@ -1,4 +1,4 @@
-"""Structural regression tests for the shared semantic core (banlag/semantics.py) and every promotion path that uses it.
+"""Structural regression tests for the shared semantic core (banlag/semantics/) and every promotion path that uses it.
 
 Codex's final acceptance audit (10 Oct 2026) found three P1 families: (1) cross-sentence composition additions left an
 answer, organic result, snapshot or citation 'exact'; (2) an Indian restriction on another drug was joined to the target

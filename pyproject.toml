@@ -22,7 +22,7 @@ classifiers = [
 dependencies = []  # standard library only, by design
 
 [project.optional-dependencies]
-dev = ["ruff>=0.6", "coverage>=7"]
+dev = ["ruff>=0.6", "coverage>=7", "mypy>=1.10"]
 
 [project.urls]
 Homepage = "https://github.com/aishwaryadewangan15-wq/banlag"
@@ -33,7 +33,7 @@ banlag = "banlag.server:main"
 banlag-collector = "banlag.collector:main"
 
 [tool.setuptools]
-packages = ["banlag", "banlag.baselines"]
+packages = ["banlag", "banlag.baselines", "banlag.claims", "banlag.semantics"]
 
 [tool.setuptools.package-data]
 banlag = ["*.json"]
@@ -45,16 +45,32 @@ version = { attr = "banlag.__version__" }
 [tool.ruff]
 target-version = "py310"
 line-length = 160
-extend-exclude = ["evidence", "captures"]
+extend-exclude = ["evidence", "captures", "tests/baseline_v01"]  # baseline_v01 is the frozen, byte-identical V0.1 starter
 
 [tool.ruff.lint]
-# Phase 1 gate: syntax errors and undefined names only. Widened as the code is refactored.
-select = ["E9", "F63", "F7", "F82"]
+# Pyflakes (all), syntax errors, bugbear and pyupgrade.
+select = ["E9", "F", "B", "UP"]
+# B905: zip(strict=) needs 3.10 semantics everywhere; the zips here pair equal-length structures by construction.
+ignore = ["B905"]
+
+[tool.ruff.lint.per-file-ignores]
+# Package __init__ files re-export every submodule name so `from banlag.claims import X` keeps working.
+"banlag/*/__init__.py" = ["F401"]
 
 [tool.coverage.run]
 source = ["banlag"]
 branch = true
 
 [tool.coverage.report]
+# CI fails below this line. Raise it as coverage grows; never lower it to make a change pass.
+fail_under = 90
 show_missing = true
 skip_covered = true
+
+[tool.mypy]
+python_version = "3.10"
+files = ["banlag"]
+warn_redundant_casts = true
+warn_unused_ignores = true
+# Next step: check_untyped_defs = true (about 60 findings today, mostly dict-shaped JSON records).
+

@@ -41,7 +41,7 @@ What the UI shows as historical results:
 
 ## Unchanged
 
-The legacy interpreter (`semantics.py`, `claims.py`, `citations.py`, `engine.py`), the collector, the HMAC sealing, the corpus and the registry are all unchanged.
+The legacy interpreter (`semantics/`, `claims/`, `citations.py`, `engine.py`), the collector, the HMAC sealing, the corpus and the registry are all unchanged.
 
 Legacy tests keep their assertion values. Five HTTP-level tests read the response through `public.legacy_view()`, which puts the experimental fields back in place. Two executed-JS tests changed their expectation from `c-restrict` to `c-qualified` because that class was removed. Both changes are marked `CONTRACT CHANGE` in the test source.
 

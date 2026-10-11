@@ -108,29 +108,50 @@ class ApprovalGates(Base):
             collector.load_plan(bad)
 
     def test_web_server_cannot_reach_the_network(self):
-        """AST closure of every banlag module the server imports: none may import the collector or a network client."""
+        """AST closure of every banlag module the server imports (packages included): none may import the collector or a network client."""
         import ast
         forbidden = {'banlag.collector', 'urllib.request', 'http.client', 'socket', 'requests', 'ssl'}
-        seen, todo = set(), ['server']
+        pkg_root = ROOT / 'banlag'
+
+        def path_of(mod):  # 'banlag.claims.analysis' -> file, or None when it is not a banlag module
+            rel = mod.split('.')[1:]
+            if not rel:
+                return pkg_root / '__init__.py', True
+            f = pkg_root.joinpath(*rel).with_suffix('.py')
+            if f.exists():
+                return f, False
+            init = pkg_root.joinpath(*rel, '__init__.py')
+            return (init, True) if init.exists() else (None, False)
+
+        seen, todo = set(), ['banlag.server']
         while todo:
             name = todo.pop()
             if name in seen:
                 continue
+            path, is_pkg = path_of(name)
+            if path is None:
+                continue
             seen.add(name)
-            tree = ast.parse((ROOT / 'banlag' / f'{name}.py').read_text(encoding='utf-8'))
-            for node in ast.walk(tree):
+            package = name if is_pkg else name.rsplit('.', 1)[0]
+            for node in ast.walk(ast.parse(path.read_text(encoding='utf-8'))):
                 mods = []
                 if isinstance(node, ast.Import):
                     mods = [a.name for a in node.names]
                 elif isinstance(node, ast.ImportFrom):
-                    base = ('banlag.' + (node.module or '')) if node.level else (node.module or '')
-                    mods = [base.rstrip('.')] + ([f'banlag.{a.name}' for a in node.names] if node.level and not node.module else [])
+                    if node.level:
+                        base = package.rsplit('.', node.level - 1)[0] if node.level > 1 else package
+                        base = base + ('.' + node.module if node.module else '')
+                    else:
+                        base = node.module or ''
+                    mods = [base] + [f'{base}.{a.name}' for a in node.names]
                 for m in mods:
-                    self.assertNotIn(m, forbidden, f'{name}.py imports {m}')
-                    if m.startswith('banlag.') and (ROOT / 'banlag' / (m.split('.', 1)[1].split('.')[0] + '.py')).exists():
-                        todo.append(m.split('.', 1)[1].split('.')[0])
-        self.assertIn('engine', seen)
-        self.assertNotIn('collector', seen)
+                    self.assertNotIn(m, forbidden, f'{name} imports {m}')
+                    if m.startswith('banlag.') or m == 'banlag':
+                        todo.append(m)
+        self.assertIn('banlag.engine', seen)
+        self.assertIn('banlag.claims.analysis', seen)
+        self.assertIn('banlag.semantics.events', seen)
+        self.assertNotIn('banlag.collector', seen)
 
 
 class SealedRun(Base):

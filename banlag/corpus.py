@@ -289,7 +289,7 @@ def _failed_closed(integ):
             'agreement': {}, 'disagreements': []}
 
 
-_BUILT = {}  # verified-digest -> build. Keyed by the digest of bytes that passed verification, never by path.
+_BUILT: dict[tuple, dict] = {}  # verified-digest -> build. Keyed by the digest of bytes that passed verification, never by path.
 
 
 def build_cases(corpus_path=str(CORPUS_PATH), manifest_path=str(CORPUS_MANIFEST)):

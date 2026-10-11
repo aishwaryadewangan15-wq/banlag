@@ -9,9 +9,9 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from banlag import capture_store, corpus
+from banlag import corpus
 from banlag.citations import coherence, reference_formulation, relation_to
-from banlag.claims import analyze_surface, restriction_statements, unknown_list_items
+from banlag.claims import analyze_surface, unknown_list_items
 from banlag.core import classify, match_formula, text_identifies_exact
 from banlag.engine import evaluate, evaluate_run
 from banlag.legal import entry_by_id

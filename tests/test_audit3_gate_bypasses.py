@@ -117,7 +117,7 @@ class P1_2_QueryHintedStatus(unittest.TestCase):
 
     def test_positive_controls(self):
         # RC-3: the question-absent variant was removed from this positive control because the owner's RC-3 instruction
-        # forbids a contrast without a supplied, validated question; it is asserted as rejected in tests/test_rc3_repairs.py.
+        # forbids a contrast without a supplied, validated question; it is asserted as rejected in tests/test_audit4_lead_clause_binding.py.
         for status in ({'query': STATUS_Q, 'answer_text': 'This combination is prohibited in India.'},):
             r = evaluate(payload(LEAD, status=status))
             self.assertEqual((r['status_answer_label'], r['explicit_status_contrast']), ('D', True), status)

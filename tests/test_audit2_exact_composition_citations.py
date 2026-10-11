@@ -8,7 +8,6 @@ D  restriction status bound to its predicate: negation window, conditions, propo
 E  T2/T3 promotion needs a current Indian restriction on the exact set; a sealed capture is not proof of a legal fact.
 Every class keeps positive controls so a fix cannot pass by refusing everything. Before/after runs: engineering-history branch, docs/proof/codex2_*.txt.
 """
-import copy
 import datetime as dt
 import hashlib
 import http.client
