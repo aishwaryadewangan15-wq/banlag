@@ -242,11 +242,17 @@ def bundle_payload(run_id, store=STORE, key_path=KEY_PATH):
             parent = by_call.get(rec.get('parent_call_id'))
             ok = bool(parent and parent['response'] and ((parent['response'].get('ai_overview') or {}).get('page_token') == rec['request']['params'].get('page_token')))
             payload['ai_overview'] = resp
-            linkage.append({'call_id': rec['call_id'], 'parent': rec.get('parent_call_id'), 'page_token_link': 'VERIFIED' if ok else 'BROKEN'})
+            linkage.append({'call_id': rec['call_id'], 'role': role, 'parent': rec.get('parent_call_id'), 'page_token_link': 'VERIFIED' if ok else 'BROKEN'})
         elif role == 'uses_ai_mode':
             payload['ai_mode'] = resp
         elif role == 'status_search':
-            payload['status_capture'] = resp
+            payload['status_capture'] = dict(resp)
+        elif role == 'status_ai_overview':  # follow-up for a status search whose AI Overview came back as a page_token
+            parent = by_call.get(rec.get('parent_call_id'))
+            ok = bool(parent and parent['response'] and ((parent['response'].get('ai_overview') or {}).get('page_token') == rec['request']['params'].get('page_token')))
+            linkage.append({'call_id': rec['call_id'], 'role': role, 'parent': rec.get('parent_call_id'), 'page_token_link': 'VERIFIED' if ok else 'BROKEN'})
+            if ok and isinstance(payload.get('status_capture'), dict) and isinstance(resp.get('ai_overview'), dict):
+                payload['status_capture']['ai_overview'] = resp['ai_overview']
     skews = []
     for c in calls:
         rec = c['record']
