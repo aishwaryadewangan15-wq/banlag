@@ -17,9 +17,9 @@ BANLAG went through several rounds of independent adversarial auditing before it
 
 1. **V0.1 starter → V0.2.** Blocker reproductions and 28 hostile tests failed on V0.1 and passed on V0.2.
 2. **First live SerpApi probe (10 Oct 2026).** One approved 3-call run, coded F / T0. It led to fixes for class-level restrictions, snippet truncation and reference-index normalisation.
-3. **Codex audit 1 (5 P1, 2 P2).** Fixed at the root, with 17 regression tests (`tests/test_codex_p1.py`).
-4. **Codex audit 2.** Its harness failed 27/48 before the fixes and 0/48 after, with 27 regression tests (`tests/test_codex_p1b.py`).
-5. **RC-1 → RC-3 and the root-cause pass.** A shared semantic core (`banlag/semantics.py`) and repairs to the gate-bypass families (`tests/test_rc2_repairs.py`, `tests/test_rc3_repairs.py`).
+3. **Codex audit 1 (5 P1, 2 P2).** Fixed at the root, with 17 regression tests (`tests/test_audit1_composition_corpus_tiers.py`).
+4. **Codex audit 2.** Its harness failed 27/48 before the fixes and 0/48 after, with 27 regression tests (`tests/test_audit2_exact_composition_citations.py`).
+5. **RC-1 → RC-3 and the root-cause pass.** A shared semantic core (`banlag/semantics/`) and repairs to the gate-bypass families (`tests/test_audit3_gate_bypasses.py`, `tests/test_audit4_lead_clause_binding.py`).
 
 These are engineering verification results. They are **not** accuracy measurements of the parser on general language.
 
