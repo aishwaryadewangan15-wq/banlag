@@ -19,7 +19,11 @@ python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\act
 pip install -e ".[dev]"
 python -m unittest discover -s tests
 ruff check .
+mypy
+coverage run -m unittest discover -s tests && coverage report   # fails below the floor
 ```
+
+Where things live: the claim reader is `banlag/claims/` (regex vocabulary in `patterns.py`), and the shared composition and restriction-event core is `banlag/semantics/`. `tests/README.md` maps each behaviour to its tests.
 
 ## Pull requests
 
