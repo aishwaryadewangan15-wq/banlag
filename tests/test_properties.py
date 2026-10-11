@@ -11,7 +11,8 @@ from banlag.claims import restriction_statements
 from banlag.legal import match_formula, registry
 
 DB = registry()
-ENTRIES = DB['entries']
+ENTRIES = [e for e in DB['entries'] if not e.get('underspecified_terms')]  # exactly matchable notices
+VAGUE = [e for e in DB['entries'] if e.get('underspecified_terms')]
 OTHERS = sorted(DB['other_actives'])
 SEED = 2026
 
@@ -65,6 +66,29 @@ class MatcherProperties(unittest.TestCase):
             with self.subTest(entry=e['id']):
                 self.assertNotEqual(match_formula(ing + [ing[0]])['status'], 'EXACT_NOTIFICATION_MATCH')
                 self.assertNotEqual(match_formula(ing + ['zz-not-a-drug'])['status'], 'EXACT_NOTIFICATION_MATCH')
+
+
+class UnderspecifiedNoticeProperties(unittest.TestCase):
+    """F07 ('Aloe vera + Vitamin E + Herbal'): no list can equal a generic 'Herbal', so it is never an exact match."""
+
+    def test_any_surface_form_is_a_review_candidate_never_a_match(self):
+        rng = random.Random(SEED)
+        self.assertTrue(VAGUE)
+        for e in VAGUE:
+            for _ in range(25):
+                v = variants(e['ingredients'], rng)
+                with self.subTest(entry=e['id'], input=v):
+                    r = match_formula(v)
+                    self.assertEqual(r['status'], 'UNDERSPECIFIED_NOTIFICATION_CANDIDATE')
+                    self.assertEqual(r['candidate_entry_id'], e['id'])
+
+    def test_naming_the_herb_or_dropping_a_component_is_not_a_candidate(self):
+        for e in VAGUE:
+            specified = [i for i in e['ingredients'] if i not in e['underspecified_terms']]
+            with self.subTest(entry=e['id']):
+                self.assertEqual(match_formula(specified + ['tulsi extract'])['status'], 'UNKNOWN_FORMULATION')
+                self.assertEqual(match_formula(specified[:-1] + e['underspecified_terms'])['status'], 'UNKNOWN_FORMULATION')
+                self.assertNotEqual(match_formula(specified)['status'], 'EXACT_NOTIFICATION_MATCH')
 
 
 class StatementProperties(unittest.TestCase):
