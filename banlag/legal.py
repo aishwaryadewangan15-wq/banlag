@@ -133,4 +133,4 @@ def match_formula(ingredients, db=None):
 
 
 def notice_numbers(text):
-    return ['S.O. %s(E)' % m.group(1) for m in NOTICE_RE.finditer(text or '')]
+    return [f'S.O. {m.group(1)}(E)' for m in NOTICE_RE.finditer(text or '')]
