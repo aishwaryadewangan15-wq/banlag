@@ -32,3 +32,6 @@ htmlcov/
 build/
 dist/
 .venv/
+
+# Static demo build output
+_site/
