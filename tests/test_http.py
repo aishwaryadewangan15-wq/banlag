@@ -17,7 +17,7 @@ class HTTPTests(unittest.TestCase):
   c.request(method,path,body=raw,headers={'Content-Type':'application/json'} if raw else {})
   r=c.getresponse();data=r.read().decode();status=r.status;c.close();return status,legacy_view(json.loads(data)) if path.startswith('/api/') else data  # public contract: legacy fields are served under "experimental"; legacy_view restores them (values unchanged)
  def test_registry_read_only(self):
-  s,r=self.request('GET','/api/registry');self.assertEqual(s,200);self.assertEqual(len(r['entries']),10)
+  s,r=self.request('GET','/api/registry');self.assertEqual(s,200);self.assertEqual(len(r['entries']),16)
  def test_default_no_live_activity(self):
   s,r=self.request('GET','/api/status');self.assertEqual(s,200)
   self.assertFalse(r['live_serpapi_enabled']);self.assertEqual(r['serpapi_requests_made'],0)
