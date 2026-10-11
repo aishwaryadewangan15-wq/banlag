@@ -17,8 +17,28 @@ const xp = o => (o && o.experimental) || {};
 const claimsOf = b => b.claims || xp(b).claims || [];   // parser claim spans: experimental
 const subj = r => (r && (r.subject || xp(r).subject)) || { ingredients: [] };  // parser subject: experimental
 
-async function api(path) { const r = await fetch(path); const d = await r.json(); if (!r.ok) throw Error(d.error || r.status); return d; }
+// Static demo mode (GitHub Pages): the same UI replays responses pre-rendered by scripts/build_static_demo.py.
+// Locally (python -m banlag) BANLAG_STATIC is undefined and every call goes to the local API exactly as before.
+const STATIC = window.BANLAG_STATIC === true;
+const staticFile = path => 'api/' + path.replace(/^\/api\//, '').replace(/\//g, '_') + '.json';
+const normName = s => (String(s).toLowerCase().match(/[a-z0-9]+/g) || []).join(' ');
+let STATIC_INDEX = null;
+async function staticPost(path, body) {
+  STATIC_INDEX = STATIC_INDEX || await (await fetch('api/_post_index.json')).json();
+  const key = path === '/api/match'
+    ? 'match:' + (Array.isArray(body.ingredients) ? body.ingredients.map(normName).sort().join('|') : '')
+    : 'evaluate:' + JSON.stringify(body);
+  const file = STATIC_INDEX[key];
+  if (!file) throw Error(path === '/api/match'
+    ? 'This read-only demo has pre-computed answers for the ten notified sets and close variants. Run BANLAG locally (python -m banlag) to check any ingredient list.'
+    : 'Imports need the local app: this read-only demo can only replay the built-in samples. Run python -m banlag.');
+  const d = await (await fetch('api/' + file)).json();
+  if (d && d.__status && d.__status !== 200) throw Error(d.error || 'Request failed');
+  return d;
+}
+async function api(path) { const r = await fetch(STATIC ? staticFile(path) : path); const d = await r.json(); if (!r.ok) throw Error(d.error || r.status); return d; }
 async function post(path, body) {
+  if (STATIC) return staticPost(path, body);
   const r = await fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
   const d = await r.json(); if (!r.ok) throw Error(d.error || 'Request failed'); return d;
 }
@@ -159,7 +179,7 @@ function renderUses(c) {
   meta.append(el('div', '', `${rec.record_id} · ${rec.source_file} · SHA-256 ${short(rec.source_sha256)} · ${rec.locked_in}`));
   const fl = rec.flags || xp(rec).flags || []; if (fl.length) meta.append(el('div', '', 'parser caveats (experimental): ' + fl.join(', ')));
   const shots = el('div', 'shots');
-  for (const s of rec.screenshots) { const a = el('a'); a.href = '/evidence/screenshots/' + s.file; a.target = '_blank'; a.rel = 'noopener'; a.title = s.file + ' · SHA-256 ' + s.sha256;
+  for (const s of rec.screenshots) { const a = el('a'); a.href = (STATIC ? '' : '/') + 'evidence/screenshots/' + s.file; a.target = '_blank'; a.rel = 'noopener'; a.title = s.file + ' · SHA-256 ' + s.sha256;
     const img = el('img'); img.src = a.href; img.alt = 'Archived screenshot ' + s.file; img.loading = 'lazy'; a.append(img); shots.append(a); }
   if (rec.screenshots.length) meta.append(shots);
 }
@@ -457,7 +477,7 @@ async function renderLive() {
     const w = el('div', 'tablewrap'); w.append(t); rb.append(w);
     body.append(sec);
   }
-  $('netStatus').textContent = `◌ Local server · 0 outbound requests · ${d.runs.length} sealed SerpApi run(s) on this machine`;
+  $('netStatus').textContent = STATIC ? `◌ Read-only static demo · ${d.runs.length} archived SerpApi run(s)` : `◌ Local server · 0 outbound requests · ${d.runs.length} sealed SerpApi run(s) on this machine`;
 }
 
 /* ---------- shell ---------- */
@@ -469,7 +489,7 @@ function showView(v) {
 }
 async function init() {
   try { S.overview = await api('/api/overview'); }
-  catch (e) { document.body.prepend(el('p', 'banner warn', 'Local server unavailable — run: python -m banlag (' + e.message + ')')); return; }
+  catch (e) { document.body.prepend(el('p', 'banner warn', (STATIC ? 'Demo data failed to load (' : 'Local server unavailable — run: python -m banlag (') + e.message + ')')); return; }
   const o = S.overview;
   S.registry = Object.fromEntries(o.cases.map(c => [c.id, c.composition]));
   const integ = o.corpus.integrity || { status: 'FAILED', reasons: ['integrity status missing'] };
