@@ -56,15 +56,22 @@ def main(argv=None):
             page.wait_for_timeout(800)
             page.screenshot(path=str(out / 'case.png'))
             frame(page, 3)
-            # scroll to the archived SerpApi capture: statement -> reference_indexes -> F09 candidate
-            live = page.locator('#caseLive')
-            live.scroll_into_view_if_needed()
+            # the archived SerpApi capture: the prohibition statement's citations name a different notified set
+            page.add_style_tag(content='.topbar{position:static!important}')
+            finding = page.locator('#caseLive .finding.amber').first
+            finding.wait_for()
+            page.evaluate("document.querySelector('#caseLive .finding.amber').scrollIntoView({block: 'start'}); window.scrollBy(0, -40)")
             page.wait_for_timeout(500)
-            frame(page, 2)
-            page.mouse.wheel(0, 450)
-            page.wait_for_timeout(400)
-            frame(page, 4)
-            live.screenshot(path=str(out / 'citations.png'))
+            frame(page, 6)
+            box = page.evaluate("""() => {
+                const f = document.querySelector('#caseLive .finding.amber');
+                const tables = f.parentElement.querySelectorAll('.tablewrap');
+                const t = tables[tables.length - 1];
+                const a = f.getBoundingClientRect(), b = t.getBoundingClientRect();
+                return {x: a.left - 12, y: a.top + window.scrollY - 12, width: a.width + 24, height: b.bottom - a.top + 24};
+            }""")
+            page.screenshot(path=str(out / 'citations.png'), full_page=True, clip=box)
+            page.evaluate('window.scrollTo(0, 0)')
             # integrity view
             page.click('button[data-view="integrity"]')
             page.wait_for_timeout(500)
