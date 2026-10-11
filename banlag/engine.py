@@ -263,7 +263,7 @@ def _query_consistency(query, ingredients):
     return {'status': 'CONSISTENT' if named == set(hits) else 'MISMATCH', 'query_mentions': sorted(named), 'declared': sorted(hits)}
 
 
-def evaluate_run(run_id, store=None, key_path=None, now=None):
+def evaluate_run(run_id, store=None, key_path=None, now=None, verified_snapshots=None):
     """Evaluate one sealed collector run. Only a fully verified run is TRUSTED; any invalid call fails closed."""
     from . import capture_store
     payload, prov = capture_store.bundle_payload(run_id, store or capture_store.STORE, key_path or capture_store.KEY_PATH)
@@ -272,8 +272,8 @@ def evaluate_run(run_id, store=None, key_path=None, now=None):
                 'verified_evidence_tier': 0, 'release_status': 'INVALID_CAPTURE - NOT EVIDENCE'}
     if not payload.get('ingredients'):
         raise ValueError('run has no declared ingredient set')
-    r = evaluate(payload, now=now, origin_override=prov)
-    if r['organic_binding'].get('status') == 'PAGE_TOKEN_LINK_DECLARED' and any(l.get('page_token_link') == 'VERIFIED' for l in prov['linkage']):
+    r = evaluate(payload, now=now, verified_snapshots=verified_snapshots, origin_override=prov)
+    if r['organic_binding'].get('status') == 'PAGE_TOKEN_LINK_DECLARED' and any(l.get('role') == 'uses_ai_overview' and l.get('page_token_link') == 'VERIFIED' for l in prov['linkage']):
         r['organic_binding']['status'] = 'PAGE_TOKEN_LINK_VERIFIED'
     r['run_id'] = run_id
     return r
