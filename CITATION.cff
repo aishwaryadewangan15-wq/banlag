@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use BANLAG, please cite it as below."
+title: "BANLAG: Auditing AI Search Against India's Drug Regulations"
+type: software
+authors:
+  - name: "The BANLAG authors"
+repository-code: "https://github.com/aishwaryadewangan15-wq/banlag"
+license: MIT
+version: "0.2.0"
+date-released: "2026-10-10"
+keywords:
+  - SerpApi
+  - AI Overview
+  - citation audit
+  - fixed-dose combinations
+  - India
+  - drug regulation
+abstract: >-
+  BANLAG is a local-first research workbench. It connects captured Google AI Overview
+  answers to their citation metadata and to the exact formulations in India's June 2026
+  Section 26A fixed-dose-combination notifications, keeping mechanical observations
+  separate from experimental parser interpretation.
