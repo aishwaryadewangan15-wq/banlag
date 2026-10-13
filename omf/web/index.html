@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BANLAG — One Missing Fact</title>
+<link rel="stylesheet" href="/style.css">
+<script src="/app.js" defer></script>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <h1>BANLAG <span class="sep">/</span> One Missing Fact</h1>
+    <p class="pitch">An AI answer can cite a notice about a <em>related but different</em> medicine. This shows the exact difference, works out the one ingredient question that tells the modeled notices apart, and lets an independent checker verify that answer. When a fact is missing, it says UNKNOWN instead of guessing.</p>
+  </div>
+  <div class="legend" aria-label="provenance tags">
+    <span class="tag real">REAL ARCHIVED</span>
+    <span class="tag official">OFFICIAL SOURCE</span>
+    <span class="tag user">USER ASSERTED</span>
+    <span class="tag hypo">HYPOTHETICAL</span>
+  </div>
+</header>
+<div class="scopebar" id="scopebar">Research tool; not medical or legal advice. Models 10 of 16 notified FDCs (F02–F07, including F07 “Herbal”, are NOT modeled). Formulations outside the model can’t be matched or cleared.</div>
+
+<main class="grid">
+  <section class="panel" id="r1" aria-labelledby="h1">
+    <div class="phead"><span class="num">1</span><h2 id="h1">Historical search evidence</h2><span class="tag bad" id="r1tag">EVIDENCE UNAVAILABLE</span></div>
+    <div class="meta" id="capmeta"></div>
+    <ol class="blocks" id="blocks"></ol>
+    <button class="linklike" id="showall" type="button">Show all answer blocks</button>
+    <h3>Cited sources for the selected paragraph</h3>
+    <div id="cited"></div>
+  </section>
+
+  <section class="panel" id="r2" aria-labelledby="h2">
+    <div class="phead"><span class="num">2</span><h2 id="h2">Scope difference</h2><span class="tag official">OFFICIAL SOURCE</span></div>
+    <div id="attrib"></div>
+    <div id="diff"></div>
+    <div class="note" id="officialnote"></div>
+    <div class="row corrupt">
+      <span class="lbl">Attack the SerpApi link:</span>
+      <button type="button" data-corrupt="swap">Swap indexes → [5,7]</button>
+      <button type="button" data-corrupt="out_of_range">Out of range</button>
+      <button type="button" data-corrupt="remove">Remove</button>
+      <button type="button" data-corrupt="" class="ghost">Restore</button>
+    </div>
+  </section>
+
+  <section class="panel" id="r3" aria-labelledby="h3">
+    <div class="phead"><span class="num">3</span><h2 id="h3">One Missing Fact</h2><span class="tag hypo">HYPOTHETICAL PRODUCT FACTS</span></div>
+    <p class="note">Facts below are supposed for the exercise, not taken from the search answer or any real label.</p>
+    <div class="row presets">
+      <button type="button" data-preset="query">Hypothetical F08 register example</button>
+      <button type="button" data-preset="amox">Amoxicillin + Serratiopeptidase</button>
+      <button type="button" data-preset="serr">Serratiopeptidase</button>
+      <button type="button" data-preset="none">No facts (all 10)</button>
+      <button type="button" data-preset="outside">+ Dimethicone (outside)</button>
+      <button type="button" data-preset="conflict">Conflict</button>
+    </div>
+    <div class="facts" id="facts"></div>
+    <form class="row addfact" id="addfact" autocomplete="off">
+      <input id="term" maxlength="80" placeholder="add ingredient (e.g. cloxacillin)" aria-label="ingredient">
+      <button type="submit" data-side="present">present</button>
+      <button type="submit" data-side="absent" class="ghost">absent</button>
+    </form>
+    <div id="result" aria-live="polite"></div>
+  </section>
+
+  <section class="panel" id="r4" aria-labelledby="h4">
+    <div class="phead"><span class="num">4</span><h2 id="h4">Proof</h2><span class="tag proof">INDEPENDENT VERIFIER</span></div>
+    <div class="row">
+      <button type="button" id="verify" class="primary">Verify independently</button>
+      <button type="button" data-tamper="swap_question">Tamper: other question</button>
+      <button type="button" data-tamper="drop_fact">Tamper: drop a fact</button>
+      <button type="button" data-tamper="inflate_depth">Tamper: depth +1</button>
+    </div>
+    <div id="verdict" aria-live="polite"></div>
+    <div id="witness"></div>
+    <details><summary>Witness JSON</summary><pre id="wjson"></pre></details>
+  </section>
+</main>
+<footer class="foot" id="foot"></footer>
+</body>
+</html>

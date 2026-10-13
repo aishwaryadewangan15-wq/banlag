@@ -1,0 +1,250 @@
+{
+ "aliases": {
+  "acetaminophen": {
+   "canonical": "paracetamol",
+   "class": "SPELLING_VARIANT"
+  },
+  "acetylsalicylic acid": {
+   "canonical": "acetyl salicylic acid",
+   "class": "SPELLING_VARIANT"
+  },
+  "amoxycillin": {
+   "canonical": "amoxicillin",
+   "class": "SPELLING_VARIANT"
+  },
+  "aspirin": {
+   "canonical": "acetyl salicylic acid",
+   "class": "SPELLING_VARIANT"
+  },
+  "bacillus coagulans": {
+   "canonical": null,
+   "class": "CONTESTED_PROBIOTIC"
+  },
+  "cefadroxil": {
+   "canonical": "cefadroxyl",
+   "class": "SPELLING_VARIANT"
+  },
+  "cefuroxime axetil": {
+   "canonical": "cefuroxime",
+   "class": "SPELLING_VARIANT"
+  },
+  "clidinium": {
+   "canonical": "clidinium bromide",
+   "class": "SPELLING_VARIANT"
+  },
+  "dicyclomine hcl": {
+   "canonical": "dicyclomine",
+   "class": "SPELLING_VARIANT"
+  },
+  "dicyclomine hydrochloride": {
+   "canonical": "dicyclomine",
+   "class": "SPELLING_VARIANT"
+  },
+  "dicycloverine": {
+   "canonical": "dicyclomine",
+   "class": "SPELLING_VARIANT"
+  },
+  "lactic acid bacilli": {
+   "canonical": null,
+   "class": "CONTESTED_PROBIOTIC"
+  },
+  "lactobacillus": {
+   "canonical": null,
+   "class": "CONTESTED_PROBIOTIC"
+  },
+  "lactobacillus sporogens": {
+   "canonical": "lactobacillus sporogenes",
+   "class": "SPELLING_VARIANT"
+  },
+  "lidocaine": {
+   "canonical": "lignocaine",
+   "class": "SPELLING_VARIANT"
+  },
+  "serrapeptase": {
+   "canonical": "serratiopeptidase",
+   "class": "SPELLING_VARIANT"
+  },
+  "serratio peptidase": {
+   "canonical": "serratiopeptidase",
+   "class": "SPELLING_VARIANT"
+  }
+ },
+ "cases": [
+  {
+   "composition": "Acetyl Salicylic Acid + Ethoheptazine",
+   "id": "F01",
+   "ingredients": [
+    "acetyl salicylic acid",
+    "ethoheptazine"
+   ],
+   "notice": "S.O. 3068(E)",
+   "pib_item": 1
+  },
+  {
+   "composition": "Dicyclomine + Paracetamol + Clidinium Bromide",
+   "id": "F08",
+   "ingredients": [
+    "clidinium bromide",
+    "dicyclomine",
+    "paracetamol"
+   ],
+   "notice": "S.O. 3078(E)",
+   "pib_item": 8
+  },
+  {
+   "composition": "Dicyclomine + Paracetamol + Clidinium Bromide + Chlordiazepoxide",
+   "id": "F09",
+   "ingredients": [
+    "chlordiazepoxide",
+    "clidinium bromide",
+    "dicyclomine",
+    "paracetamol"
+   ],
+   "notice": "S.O. 3071(E)",
+   "pib_item": 9
+  },
+  {
+   "composition": "Gliclazide + Chromium Picolinate",
+   "id": "F10",
+   "ingredients": [
+    "chromium picolinate",
+    "gliclazide"
+   ],
+   "notice": "S.O. 3080(E)",
+   "pib_item": 10
+  },
+  {
+   "composition": "Paracetamol + Lignocaine",
+   "id": "F11",
+   "ingredients": [
+    "lignocaine",
+    "paracetamol"
+   ],
+   "notice": "S.O. 3079(E)",
+   "pib_item": 11
+  },
+  {
+   "composition": "Amoxicillin + Serratiopeptidase + Lactobacillus Sporogenes",
+   "id": "F12",
+   "ingredients": [
+    "amoxicillin",
+    "lactobacillus sporogenes",
+    "serratiopeptidase"
+   ],
+   "notice": "S.O. 3070(E)",
+   "pib_item": 12
+  },
+  {
+   "composition": "Amoxicillin + Cloxacillin + Lactic acid bacillus + Serratiopeptidase",
+   "id": "F13",
+   "ingredients": [
+    "amoxicillin",
+    "cloxacillin",
+    "lactic acid bacillus",
+    "serratiopeptidase"
+   ],
+   "notice": "S.O. 3081(E)",
+   "pib_item": 13
+  },
+  {
+   "composition": "Amoxicillin + Serratiopeptidase",
+   "id": "F14",
+   "ingredients": [
+    "amoxicillin",
+    "serratiopeptidase"
+   ],
+   "notice": "S.O. 3072(E)",
+   "pib_item": 14
+  },
+  {
+   "composition": "Cefadroxyl + Probenecid",
+   "id": "F15",
+   "ingredients": [
+    "cefadroxyl",
+    "probenecid"
+   ],
+   "notice": "S.O. 3082(E)",
+   "pib_item": 15
+  },
+  {
+   "composition": "Cefuroxime + Serratiopeptidase",
+   "id": "F16",
+   "ingredients": [
+    "cefuroxime",
+    "serratiopeptidase"
+   ],
+   "notice": "S.O. 3083(E)",
+   "pib_item": 16
+  }
+ ],
+ "derived_from": {
+  "commit": "a84c3451bda95c12a9e99f2f93dd2d917131da2c",
+  "path": "banlag/registry.json",
+  "repo": "aishwaryadewangan15-wq/banlag",
+  "schema": "banlag.registry.v2",
+  "sha256": "36454f1a5d9b481cc951efe80ea8201322312b7dc9c50997f262ea62e074e31c"
+ },
+ "official_source": {
+  "current_status_label": "PENDING_PRIMARY_SOURCE_RECHECK",
+  "gazette_id": "CG-DL-E-19062026-273649",
+  "gazette_pdf_bytes": 1481663,
+  "gazette_pdf_sha256": "235a68b44ed574f0043e70bb0983985be0d9275d532f2825fdc21cac5d09ce04",
+  "gazette_url": "https://egazette.gov.in/WriteReadData/2026/273649.pdf",
+  "original_register_legal_status": {
+   "amendment_check": "No amending, rescinding or exempting notification found in an e-Gazette full-text search, 11 Jun - 10 Oct 2026 (terms: fixed dose combination, 26A, Serratiopeptidase, Lignocaine, Clidinium, Probenecid, Ethoheptazine, Chromium Picolinate, Gliclazide, Cefuroxime, Dicyclomine, Cefadroxyl).",
+   "as_of": "2026-10-10",
+   "basis": "Independent legal audit (LEGAL_GATE_PASS limited to notice-level claims for the ten exact compositions), 10 Oct 2026.",
+   "court_check": "No court order located concerning S.O. 3068(E)-3083(E) in about 30 date-filtered Indian Kanoon queries plus news/web search (10 Oct 2026). Not searched: High Court case-status pages and cause lists, Supreme Court diary, eCourts/NJDG, paid databases, unindexed interim orders. This search is not exhaustive.",
+   "recheck_max_age_days": 7,
+   "status_label": "NO_STAY_LOCATED"
+  },
+  "pib": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2275595",
+  "text_basis": "English operative text extracted from the PDF text layer (Hindi not decoded). Whitespace and line-break hyphenation normalised; wording otherwise verbatim."
+ },
+ "other_actives": {
+  "aceclofenac": [],
+  "azithromycin": [],
+  "bromelain": [],
+  "cefixime": [],
+  "chromium": [],
+  "chromium polynicotinate": [],
+  "clarithromycin": [],
+  "clavulanic acid": [
+   "clavulanate",
+   "clavulanate potassium",
+   "potassium clavulanate"
+  ],
+  "codeine": [],
+  "diclofenac": [
+   "diclofenac potassium",
+   "diclofenac sodium"
+  ],
+  "dicloxacillin": [],
+  "dimethicone": [
+   "activated dimethicone",
+   "simethicone"
+  ],
+  "drotaverine": [],
+  "fentanyl": [],
+  "ibuprofen": [],
+  "lansoprazole": [],
+  "mefenamic acid": [],
+  "metformin": [],
+  "midazolam": [],
+  "nimesulide": [],
+  "ofloxacin": [],
+  "propofol": [],
+  "rabeprazole": [],
+  "trypsin": []
+ },
+ "probiotic_group": [
+  "bacillus coagulans",
+  "lactic acid bacilli",
+  "lactic acid bacillus",
+  "lactobacillus",
+  "lactobacillus sporogenes"
+ ],
+ "register_id": "banlag-original-main-10",
+ "schema": "omf.register.v1",
+ "scope_note": "Models 10 of the 16 formulations named in the June 2026 MoHFW notices (PIB list). F02-F07 are NOT modeled; nothing outside this register can be matched or cleared."
+}

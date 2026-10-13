@@ -1,0 +1,100 @@
+:root {
+  --bg: #f6f5f1; --panel: #ffffff; --ink: #1d1d1b; --muted: #5f5d57; --line: #dedbd2;
+  --real: #0b6e4f; --real-bg: #e3f3ec; --official: #1f4e9a; --official-bg: #e5edf9;
+  --user: #7a4b00; --user-bg: #fbefd9; --hypo: #6b2c91; --hypo-bg: #f1e6f7;
+  --bad: #a4161a; --bad-bg: #fbe3e3; --good: #116b2e; --good-bg: #e2f4e7; --warn: #8a5a00; --warn-bg: #fff3d6;
+  --accent: #111; --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #151514; --panel: #1f1f1d; --ink: #ecebe6; --muted: #a8a59d; --line: #34332f;
+    --real: #6fd3ad; --real-bg: #12352a; --official: #9bbcf2; --official-bg: #18263d;
+    --user: #f1c27a; --user-bg: #3a2a10; --hypo: #d6a6f2; --hypo-bg: #2f1d3b;
+    --bad: #ff8a8a; --bad-bg: #3d1414; --good: #85e0a3; --good-bg: #133220; --warn: #f5c76b; --warn-bg: #3a2c0c; --accent: #f3f2ee;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.45 system-ui, "Segoe UI", sans-serif; }
+.top { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; padding: 14px 18px 8px; flex-wrap: wrap; }
+h1 { margin: 0; font-size: 20px; letter-spacing: -0.01em; }
+h1 .sep { color: var(--muted); font-weight: 400; }
+.pitch { margin: 4px 0 0; max-width: 980px; color: var(--muted); font-size: 13px; }
+.legend { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag { display: inline-block; font: 600 10.5px/1 var(--mono); letter-spacing: .04em; padding: 4px 6px; border-radius: 3px; border: 1px solid currentColor; white-space: normal; max-width: 100%; overflow-wrap: anywhere; line-height: 1.25; }
+.phead { flex-wrap: wrap; }
+.tag.real { color: var(--real); background: var(--real-bg); }
+.tag.official { color: var(--official); background: var(--official-bg); }
+.tag.user { color: var(--user); background: var(--user-bg); }
+.tag.hypo { color: var(--hypo); background: var(--hypo-bg); }
+.tag.proof { color: var(--ink); background: transparent; }
+.tag.bad { color: var(--bad); background: var(--bad-bg); }
+.tag.good { color: var(--good); background: var(--good-bg); }
+.tag.warn { color: var(--warn); background: var(--warn-bg); }
+.scopebar { margin: 0 18px 10px; padding: 6px 10px; border-left: 3px solid var(--warn); background: var(--warn-bg); color: var(--ink); font-size: 12.5px; }
+.grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 12px; padding: 0 18px 12px; }
+/* G4 v2 first screen: on wide screens the interactive regions (3 question, 4 proof) form the first row so the
+   question, YES/NO/UNKNOWN and Verify are visible without scrolling; evidence regions 1-2 follow. Region numbers
+   are unchanged; DOM/reading order on narrow screens stays 1-2-3-4. */
+@media (min-width: 1000px) { #r3 { order: 1; } #r4 { order: 2; } #r1 { order: 3; } #r2 { order: 4; } }
+@media (max-width: 1000px) { .grid { grid-template-columns: 1fr; } }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; min-width: 0; }
+.phead { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.phead h2 { font-size: 15px; margin: 0; flex: 1; }
+.num { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: var(--panel); display: grid; place-items: center; font: 700 12px/1 var(--mono); }
+h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 10px 0 6px; }
+.meta { font: 11.5px/1.4 var(--mono); color: var(--muted); margin-bottom: 6px; word-break: break-word; }
+.blocks { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.blk { border: 1px solid var(--line); border-radius: 4px; padding: 6px 8px; cursor: pointer; background: transparent; text-align: left; width: 100%; color: inherit; font: inherit; }
+.blk:hover { border-color: var(--muted); }
+.blk.sel { border-color: var(--real); box-shadow: inset 3px 0 0 var(--real); }
+.blk .bt { display: block; }
+.chip { display: inline-block; font: 600 11px/1 var(--mono); padding: 3px 5px; border-radius: 3px; margin-right: 4px; border: 1px solid var(--line); }
+.chip.idx { background: var(--real-bg); color: var(--real); border-color: transparent; }
+.status { font: 600 10.5px/1 var(--mono); margin-left: 6px; }
+.status.LINKED { color: var(--real); } .status.UNLINKED, .status.UNVERIFIED { color: var(--bad); }
+.ref { border-top: 1px dashed var(--line); padding: 6px 0; }
+.ref .src { font-weight: 600; }
+.ref .snip { color: var(--ink); margin: 2px 0; font-size: 13px; }
+.ref { padding: 4px 0; }
+.ref .row { margin: 3px 0 0; }
+.ref .url { font: 11px var(--mono); color: var(--muted); word-break: break-all; }
+.ingr { display: inline-block; padding: 2px 6px; margin: 2px 3px 2px 0; border-radius: 10px; border: 1px solid var(--line); font-size: 12.5px; }
+.ingr.extra { border-color: var(--bad); color: var(--bad); background: var(--bad-bg); font-weight: 700; }
+.ingr.p { border-color: var(--good); }
+.ingr.n { border-color: var(--bad); text-decoration: line-through; }
+.ingr .x { border: 0; background: none; color: var(--muted); cursor: pointer; padding: 0 0 0 4px; font: inherit; }
+.diffgrid { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; align-items: baseline; margin: 6px 0; }
+.diffgrid .lab { font: 600 12px var(--mono); }
+.big { font-size: 17px; font-weight: 650; margin: 8px 0 4px; }
+.big .q { color: var(--hypo); }
+.note { color: var(--muted); font-size: 12.5px; margin: 6px 0; }
+.warnbox { border-left: 3px solid var(--warn); background: var(--warn-bg); padding: 5px 8px; margin: 6px 0; font-size: 12.5px; }
+.badbox { border-left: 3px solid var(--bad); background: var(--bad-bg); padding: 5px 8px; margin: 6px 0; font-size: 12.5px; }
+.goodbox { border-left: 3px solid var(--good); background: var(--good-bg); padding: 5px 8px; margin: 6px 0; font-size: 12.5px; }
+.row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 6px 0; }
+.row .lbl { font-size: 12px; color: var(--muted); }
+button { font: 600 12.5px system-ui, sans-serif; padding: 5px 9px; border-radius: 4px; border: 1px solid var(--accent); background: var(--panel); color: var(--ink); cursor: pointer; }
+button:hover:not(:disabled) { background: var(--bg); }
+button:disabled { opacity: .45; cursor: not-allowed; }
+button.primary { background: var(--accent); color: var(--panel); }
+button.ghost { border-color: var(--line); }
+button.ans { min-width: 82px; }
+button.linklike { border: 0; padding: 4px 0; background: none; color: var(--muted); text-decoration: underline; }
+input { font: inherit; padding: 5px 7px; border: 1px solid var(--line); border-radius: 4px; background: var(--panel); color: var(--ink); min-width: 220px; }
+.parts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 6px 0; }
+.parts > div { border: 1px solid var(--line); border-radius: 4px; padding: 6px; font-size: 12.5px; }
+.parts .h { font: 700 11px var(--mono); }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 2px 10px; font: 12px/1.45 var(--mono); }
+.kv .k { color: var(--muted); }
+.kv .v { word-break: break-all; }
+pre { white-space: pre-wrap; word-break: break-all; font: 11px/1.4 var(--mono); max-height: 260px; overflow: auto; background: var(--bg); padding: 8px; }
+.foot { padding: 4px 18px 16px; color: var(--muted); font-size: 11.5px; }
+.history { font-size: 12px; color: var(--muted); }
+/* G4 v2: usable touch targets on narrow screens (no layout redesign). */
+@media (max-width: 700px) { button { min-height: 36px; } .ingr .x { min-width: 32px; min-height: 32px; } }
+
+/* REV4: neutral answer states; Verify remains an outlined action. */
+button.ans { background: var(--panel); color: var(--ink); border-color: var(--line); }
+button#verify.primary { background: var(--panel); color: var(--ink); border-color: var(--accent); }
+button.ans:hover:not(:disabled), button#verify.primary:hover:not(:disabled) { background: var(--bg); }
+button.ans:focus-visible, button#verify:focus-visible { outline: 3px solid var(--official); outline-offset: 2px; }

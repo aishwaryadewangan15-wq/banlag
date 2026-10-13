@@ -1,183 +1,66 @@
-# BANLAG — Auditing AI Search Against India's Drug Regulations
+# BANLAG — One Missing Fact (rights-conscious public release)
 
-**When AI cites a regulation, does the evidence actually match the drug formulation?**
+A local, offline demonstration combining BANLAG's Gazette-based factual registry and fail-closed evidence-audit interface with the One Missing Fact (OMF) deterministic finite-model solver and independent witness verifier.
 
-*SerpApi India Hackathon 2026 | Local research workbench | Reproducible evidence exploration*
+> **Hackathon demonstration and public-release limitation**
+>
+> The hackathon demonstration video includes archived Google/SerpApi evidence that is not distributed in this public source release. This release preserves the BANLAG investigation interface and One Missing Fact solver using clearly labelled hypothetical facts. Historical search observations and citation comparisons shown in the demonstration cannot be independently reproduced from this reduced package. G5 and G6 remain incomplete and have not passed.
 
-## The problem
+> **Evidence disclosure:** this public release omits the historical Google screenshots, the G1 search corpus and its manifest, detached evidence pins, and the captured F08 Google AI Overview derivative. The BANLAG historical G1 results and the OMF captured-search comparison are therefore **unavailable**. The package does not claim that omitted evidence was verified. BANLAG fails closed, suppressing historical labels/findings and setting publication gates to WITHHOLD. OMF reports an evidence mismatch/unavailable state and shows no captured answer text or citations.
 
-A single additional ingredient can change which drug regulation applies.
+## Official-source attribution
 
-In June 2026, India published sixteen notifications prohibiting the manufacture, sale or distribution of specific fixed-dose drug combinations for human use under Section 26A of the Drugs and Cosmetics Act. Each notification identifies a particular formulation.
+The included factual notice/ingredient registries reproduce factual material published in Government of India Official Gazette notifications and identify the relevant notification. Source: [Official Gazette, notifications S.O. 3068(E)–3083(E), dated 11 June 2026; the Gazette masthead is dated 15 June 2026 and the e-publication record is 19 June 2026](https://egazette.gov.in/WriteReadData/2026/273649.pdf). The included explanatory government-basis text is attributed to the Department of Health and Family Welfare / PIB source record: [PIB press release](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2275595). Verify current legal status against official sources before relying on it; this demonstration is not legal or medical advice. The registry includes source references in each case.
 
-For example:
+## Requirements and run
 
-* **F08 — S.O. 3078(E):** Dicyclomine + Paracetamol + Clidinium Bromide.
-* **F09 — S.O. 3071(E):** Dicyclomine + Paracetamol + Clidinium Bromide + Chlordiazepoxide.
+- Python 3.14.x (tested with Python 3.14.6).
+- Python standard library only; no package installation, API key, browser extension, or external asset download is required.
 
-These are different combinations covered by different notifications.
+On Windows, double-click `RUN_INTEGRATED_WINDOWS.bat`, or run from this folder:
 
-When Google's AI Overview describes a formulation and cites supporting sources, a researcher needs to know whether the captured citation metadata actually names the same combination.
-
-That is the problem BANLAG investigates.
-
-## What BANLAG does
-
-BANLAG is a local-first research workbench that connects captured Google AI answers to their citation metadata and India's exact Gazette formulations.
-
-It provides:
-
-1. **Structured SerpApi evidence:** Google AI Overview text blocks, `reference_indexes`, references, organic results, search identifiers and provider timestamps.
-2. **Statement-to-citation tracing:** Each captured AI answer block can be inspected alongside the references indexed by that block.
-3. **Exact Gazette comparisons:** Registered ingredient sets can be compared to expose additions, removals and formulation differences.
-4. **Evidence provenance:** Genuine collector captures use locally sealed records; published keyless archives are clearly distinguished from authenticated local captures.
-5. **Experimental interpretation boundaries:** Language-parser readings are separated from direct observations and are not presented as verified regulatory decisions.
-6. **Adversarial import checks:** User-supplied evidence is never promoted to authenticated SerpApi evidence merely because its metadata looks convincing.
-
-BANLAG does not determine why an AI model produced an answer, and it does not automatically decide whether a regulation has been violated.
-
-## The real SerpApi finding: one ingredient changes the citation context
-
-### Case F08 — Dicyclomine + Paracetamol + Clidinium Bromide
-
-Gazette notification: **S.O. 3078(E)**.
-
-BANLAG includes an actual SerpApi capture run from 10 October 2026. The approved run made three successful SerpApi calls: a Google Search request for the formulation's uses, its Google AI Overview `page_token` follow-up, and a separate Google Search request asking about the formulation's status.
-
-The captured AI Overview included a statement noting that India had prohibited certain fixed-dose combinations involving anticholinergic ingredients. This was a partial, class-level disclosure, not a demonstrated complete omission of the restriction.
-
-The key observation is in the **MECHANICAL OBSERVATIONS** table:
-
-* The captured prohibition-related block cites references **[1]** and **[2]** through SerpApi's `reference_indexes`.
-* Reference **[2]** contains the names of four ingredients, including Chlordiazepoxide.
-* Those names produce a **candidate** match to **F09**, whose Gazette notice is **S.O. 3071(E)**.
-* Compared with the target F08 formulation, the typed ingredient-set difference is **+chlordiazepoxide**.
-* Reference **[1]** is truncated. BANLAG therefore leaves its formulation interpretation **unresolved**.
-
-This is a difference in the captured citation metadata, not proof that the underlying webpage is incorrect. The cited webpages were not independently fetched. An ingredient-name match is also not proof that a snippet contains an exhaustive ingredient list.
-
-**What the evidence establishes:** BANLAG can make a meaningful formulation difference visible at the level of a specific AI statement and its captured citations.
-
-**What it does not establish:** That Google concealed a restriction, that both references are wrong, that the source webpages contain false information, or that a verified live omission was observed.
-
-## Earlier preregistered browser research
-
-Before the SerpApi capture, a separate browser-based investigation examined ten exact formulations using signed-out Google India. Its query design and coding rules were locked before the first query, and the archive was retained for review.
-
-In 7 of 10 investigated compositions, the preregistered single-coder labels recorded present-use descriptions without India-specific regulatory context in both passes. When separately asked about status, the same search surface described those restrictions.
-
-This is a single-coder historical browser observation. It is not a representative estimate of Google's overall accuracy, not independently recoded, and not a replication of the SerpApi capture.
-
-BANLAG also preserves a literal notice-number discrepancy from that browser archive:
-
-* AI-cited notice: **S.O. 3080(E)**.
-* Gazette notice for Paracetamol + Lignocaine: **S.O. 3079(E)**.
-
-This is a notice-number string comparison, not a claim about the AI's intentions.
-
-The investigated registry contains ten case formulations from the broader set of sixteen notifications. BANLAG does not claim to have investigated all sixteen.
-
-## Why SerpApi is essential
-
-SerpApi provides a structured interface to the captured Google results rather than requiring BANLAG to infer citation relationships from visual source chips.
-
-In particular, the AI Overview response includes `text_blocks` and `reference_indexes` linked to the response's `references`. This lets a researcher inspect which captured reference metadata belongs to which AI statement.
-
-The project uses:
-
-* `google` with `gl=in` for India-targeted search results.
-* `google_ai_overview` for the AI Overview `page_token` follow-up.
-
-The genuine capture run is preserved at [`evidence/serpapi/run-20261010T024515Z-9415e2/`](evidence/serpapi/run-20261010T024515Z-9415e2/). Its exported archive contains three collector records, their raw provider responses and a SHA-256 manifest.
-
-BANLAG is not the first tool to connect AI claims to citations. Prior work such as GRAP Audit also investigates citation relationships. BANLAG's specific research focus is the exact ingredient-level distinction between Indian Gazette notifications.
-
-## Evidence integrity and engineering
-
-The project's security and evidence-handling mechanisms include:
-
-* A locally stored HMAC sealing key, excluded from the public repository.
-* SHA-256 binding of recorded capture bytes and research artifacts.
-* Clear differentiation between authenticated local captures, hash-consistent archives, user-supplied imports and synthetic test fixtures.
-* A local HTTP application bound to `127.0.0.1`.
-* Restrictions on cross-origin requests, unsupported methods and oversized input bodies.
-* Explicit separation of mechanical citation observations from experimental language-parser interpretations.
-
-The final release underwent extensive regression and adversarial testing. A fresh-clone, keyless verification of the submitted commit ran 225 tests: 220 passed and five key-dependent tests were skipped. These are engineering verification results, not a measured general-language classification accuracy rate.
-
-For test details and historical engineering decisions, see [docs/HARDENING_REPORT.md](docs/HARDENING_REPORT.md), [docs/GATE_STATUS.md](docs/GATE_STATUS.md) and [docs/PUBLIC_CONTRACT.md](docs/PUBLIC_CONTRACT.md).
-
-## Run BANLAG locally
-
-Requirements: Python 3.10 or newer. The application uses the Python standard library and requires no API key for offline exploration.
-
-From the repository root, run the tests:
-
-```bash
-python -m unittest discover -s tests
+```powershell
+python -I -B run_integrated.py
 ```
 
-Start the application:
+The launcher binds to `127.0.0.1` and prints a local URL. BANLAG opens at `/`; OMF opens at `/omf/`. Keep the terminal open and press `Ctrl+C` to stop it. The application does not make outbound requests or load remote assets. Clicking the official-source links in BANLAG opens those government sites in the user's browser.
 
-```bash
-python -m banlag
+## OMF demonstration and evidence limits
+
+OMF models 10 of 16 June-2026 notified fixed-dose combinations. Its F08 starter facts are clearly labelled **hypothetical** and taken from the included factual register solely to seed the exercise. They are not presented as a product label or as facts observed in a Google/SerpApi answer. YES and NO add hypothetical assertions; UNKNOWN leaves the state open. The minimax solver, independent subprocess witness verifier, and tamper rejection remain active.
+
+The public release contains no historical F08 capture, search blocks, citation links, or evidence pins. Accordingly, SerpApi integration is described as the method used by the separate approval-gated BANLAG collector: it can request Google search/AI Overview structured output and reference indexes when explicitly invoked with a SerpApi key and approval. This release's integrated launcher never invokes that collector, makes no SerpApi request, and includes no historical captured output. It cannot reproduce or authenticate the archived search comparison from this package.
+
+## BANLAG evidence limits
+
+BANLAG retains its original routes, UI, rules, factual registry, and plan examples. Its historical G1 corpus and screenshots are excluded. On startup the integrity checks fail closed: there are no historical G1 labels/results, no screenshot links, and all publication gates are WITHHOLD. The G1 and integrity views remain available to explain this state; they are not a report of the historical experiment.
+
+## Scope and limitations
+
+The registry models a subset of notices and is a research demonstration, not product identification, medical advice, legal advice, or clearance of combinations outside its finite register. Gazette-derived facts do not replace checking the official notice and its current status. OMF's sample facts are hypothetical. Historical BANLAG benchmark and search-capture claims are unavailable in this release.
+
+No new license grant is made by this package. The project owner may choose licensing terms for project-authored code; attribution alone does not grant redistribution rights to third-party material.
+
+## Offline smoke test
+
+With Python 3.14.x installed, run:
+
+```powershell
+python -I -B smoke_test.py
+python -I -B f08_preset_regression_test.py
 ```
 
-Then open `http://127.0.0.1:8765`. On Windows, you can also run `RUN_WINDOWS.bat`.
+The smoke test launches this exact folder, calls only loopback endpoints, requires historical evidence to be unavailable/fail-closed, exercises BANLAG routes and OMF navigation, tests deterministic solving and YES/NO/UNKNOWN semantics, independently verifies a witness, rejects a tampered witness, rejects malformed input, and scans package contents for excluded artifacts and local paths. It makes no external network requests.
 
-The local web server makes no outbound requests. New SerpApi captures are performed only through the separate, explicitly approved collector CLI; ordinary use of the local application does not trigger SerpApi calls.
+## Layout
 
-A public fresh clone replays the exported SerpApi data as `ARCHIVED_SERPAPI_CAPTURE`, because the private sealing key is deliberately not published. The source machine can authenticate its original local seal. The public archive's hashes support integrity checks but do not independently authenticate its origin on another machine.
+- `original/banlag/`, `original/web/`: BANLAG application, factual registry, and interface.
+- `original/plans/`: example query plans.
+- `original/evidence/`: empty of excluded historical search artifacts in this release.
+- `omf/`: OMF server, deterministic minimax model, factual register, interface, and independent verifier.
+- `run_integrated.py`, `RUN_INTEGRATED_WINDOWS.bat`: single-origin loopback launcher.
+- `smoke_test.py`: offline release smoke test.
+- `f08_preset_regression_test.py`: regression for the fail-closed empty-array F08 fallback.
+- `PACKAGE_SHA256_MANIFEST.json`: SHA-256 inventory of all release payload files except the manifest itself.
 
-## Suggested demonstration
-
-1. Open case F08 and inspect Gazette notice S.O. 3078(E).
-2. Find the archived SerpApi AI Overview in the case file.
-3. Inspect the prohibition-related block and references [1] and [2] in **MECHANICAL OBSERVATIONS**.
-4. Compare the F09 candidate and its additional chlordiazepoxide ingredient.
-5. Inspect the G1 browser experiment and its single-coder limitations.
-6. Open **Integrity** to inspect the S.O. 3080(E) versus S.O. 3079(E) string discrepancy.
-7. Open **Verify an import** to see how unverified and synthetic inputs are handled.
-
-## Interpretation boundaries and limitations
-
-BANLAG is an evidence exploration instrument, not an automated legal or medical decision-maker.
-
-The English language parser uses bounded rules and retains known failure modes. It has no independently established general accuracy score for the submitted release. Its interpretations, labels, evidence tiers and publication-related readings are clearly marked experimental for human review.
-
-The public response contract recursively filters assessment and evidence outputs, retaining allowlisted observations and separating unverified parser conclusions under `experimental`. Typed registry, exact-list matching and server-status endpoints have separately defined handling; they are not all subjected to identical recursive filtering.
-
-The genuine SerpApi investigation consists of one capture run at one time and location. No verified live omission or live Tier 2/3 finding was established. AI Mode was not captured, and the separately asked status search's AI Overview was not fetched.
-
-Legal checks found no amendment or stay as of 10 October 2026, but those searches were not exhaustive. Legal status should be rechecked before subsequent regulatory use.
-
-BANLAG does not make accusations about Google, source publishers, pharmacies, manufacturers or individual products.
-
-**Medical safety:** Do not start, stop or change medication based on BANLAG. A Gazette restriction on manufacture, sale or distribution does not by itself establish an offence involving a patient's possession or use. Consult an appropriate medical professional for personal health decisions.
-
-## Reproducibility and release identity
-
-The submitted release commit is `063a0d1c93ff24e973b4dbacab3d6f439542a653`.
-
-Its authoritative source fingerprint is `c635055d573cea07146c68b9a9fb89ddd06bdf1a698ca242b63bf02d7d048f73`.
-
-The fingerprint covers the specified Python, JavaScript, HTML, CSS and JSON source files using the locale-independent method documented in [docs/proof/RELEASE_IDENTITY.md](docs/proof/RELEASE_IDENTITY.md).
-
-`BUILD_SHA256_MANIFEST.json` is not the authoritative release identity. Its `status` field (`v0.2_local_build_not_published`) is a label left over from an earlier build stage, and it lists one internal build-instruction file that was deliberately excluded from the public repository. The accepted source fingerprint is documented separately in [docs/proof/RELEASE_IDENTITY.md](docs/proof/RELEASE_IDENTITY.md).
-
-Earlier benchmark results and failed acceptance tests remain available in the engineering history. They should not be interpreted as accuracy measurements of the submitted release.
-
-## Development and prior art
-
-BANLAG was developed with AI assistance, including Claude Code for implementation, ChatGPT for planning and review, and OpenAI Codex for adversarial engineering audits.
-
-Prior art includes GRAP Audit, which also examines citation relationships. BANLAG's research emphasis is exact ingredient-level comparison against Indian Gazette notifications.
-
-The source archive, tests, engineering reports and documented limitations are provided so the work can be examined critically.
-
-## Official sources
-
-* [Indian Gazette — S.O. 3068(E)–3083(E)](https://egazette.gov.in/WriteReadData/2026/273649.pdf)
-* [Press Information Bureau release](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2275595)
-* [Central Drugs Standard Control Organisation](https://cdsco.gov.in/opencms/opencms/en/Drugs/FDC/)
-* [SerpApi Google AI Overview API](https://serpapi.com/google-ai-overview-api)
+This public release preserves existing Git history. Excluded historical captures and audit materials may remain reachable in earlier commits; this release does not sanitize repository history.
